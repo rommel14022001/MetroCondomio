@@ -1,9 +1,10 @@
 import GastosDetails from '../components/GastoDetail';
 import GastosForm from '../components/GastosForm';
 import React, {useState, useEffect,Fragment} from 'react';
+import styles from "../styles/pages/gastospage.module.css";
 import {Container, Button,Col,Row} from 'react-bootstrap';
-
-
+import resolvers from '../graphQL/resolvers/resolvers';
+// const models=require('../sequelize/models/index');
 
 export const GastosPage = () => {
 
@@ -13,7 +14,7 @@ export const GastosPage = () => {
     const createGasto = (name,amount)=> {
     
         setGastos( (prevGasto) => {return [...prevGasto ,{name,amount}]} );
-                
+        // console.log(resolvers.Query.getUsuarios(models))                
     }
     
     const deleteGasto=  gasto =>{
@@ -22,13 +23,18 @@ export const GastosPage = () => {
     
     }
 
+    
+
     const title= gastos.length===0 ? 'No Hay Gastos' : 'Gastos';
 
     return(
         <Container>
-            <h1>Administrar Gastos</h1>
+            <Col className={styles.title}>
+
+                <h1>Administrar Gastos</h1>
+            </Col>
             <div className = "TagsManagerBody">
-                <div className = "TagsManagerDetails">
+                <Col className = {styles.GastosManagerDetails}>
                     <h2> {title} </h2>
                     {gastos.map(gasto=>(
                     <GastosDetails 
@@ -37,7 +43,7 @@ export const GastosPage = () => {
                     deleteGasto={deleteGasto}
 
                     />))}
-                </div>
+                </Col>
                 <div className = "TagsManagerForm">
                     <GastosForm 
                     key={1}

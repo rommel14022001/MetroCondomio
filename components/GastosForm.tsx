@@ -3,7 +3,8 @@ import React, {useState} from 'react';
 
 import styles from "../styles/components/gastosForm.module.css"
 import {Row,Container,Col} from 'react-bootstrap';
-// import transaccion from "../assets/transaccion.svg";
+import Image from 'next/image';
+
 export const GastosForm = ({createGasto}) => {
     
     const [gasto, handleGasto]=useState({name:'', amount:''});
@@ -31,11 +32,15 @@ export const GastosForm = ({createGasto}) => {
     }
 
     return(
-        <div className = "GastosFormContainer">
-            {/* <img src = {transaccion} id = "Image"></img> */}
+        <div className = {styles.GastosFormContainer}>
+            {/* <Image 
+                src = {transaccion}
+                id = "Image"
+                width={500}
+                height={500}
+                /> */}
             
-
-            <form onSubmit = {submitGasto}>
+            <form className={styles.formg} onSubmit = {submitGasto}>
                 <Row>
                     <Col xs={12} md={8} lg={8}>
                         <div className = "mt-2">
