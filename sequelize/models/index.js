@@ -8,7 +8,8 @@ const sequelize = new Sequelize("bd_metrocondominio","root",'Realgud1402.', {
 });
 
 const models={
-    usuario:sequelize.import('./usuario.js')
+    usuario:sequelize.import('./usuario.js'),
+    gasto:sequelize.import('./gastos.js')
 }
 
 models.sequelize=sequelize;

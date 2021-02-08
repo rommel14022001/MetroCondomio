@@ -11,7 +11,7 @@ module.exports= (sequelize,DataTypes)=>{
             allowNull:false
         },
         monto:{
-            type:DataTypes.STRING,
+            type:DataTypes.INTEGER,
             allowNull:false
         },
         active:{
