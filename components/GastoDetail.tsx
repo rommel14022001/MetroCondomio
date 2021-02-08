@@ -1,4 +1,5 @@
-import { React } from "react";
+
+import React from 'react';
 
 export const GastosDetails  = ({gasto, deleteGasto}) => {
     
@@ -6,7 +7,7 @@ export const GastosDetails  = ({gasto, deleteGasto}) => {
 
     return(
         <div className = "TagsDetailsContainer">
-            <div> {i} {name} </div>
+            <div> {name} </div>
             <button className="btn-outline btn-danger" onClick = {() => deleteGasto(name)}>Eliminar</button>
         </div>
     )

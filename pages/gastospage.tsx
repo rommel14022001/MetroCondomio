@@ -1,6 +1,7 @@
 import GastosDetails from '../components/GastoDetail';
 import GastosForm from '../components/GastosForm';
 import React, {useState, useEffect,Fragment} from 'react';
+import {Container, Button,Col,Row} from 'react-bootstrap';
 
 
 
@@ -9,44 +10,43 @@ export const GastosPage = () => {
     const [gastos, setGastos] = useState([]);
     
 
-    const createGasto =  (name,amount) => {
+    const createGasto = (name,amount)=> {
     
-         addNewGastos(name,amount);
-    
+        setGastos( (prevGasto) => {return [...prevGasto ,{name,amount}]} );
+                
     }
     
     const deleteGasto=  gasto =>{
         
-        deleteGastoDB(gasto);
+        // deleteGastoDB(gasto);
     
     }
 
     const title= gastos.length===0 ? 'No Hay Gastos' : 'Gastos';
 
     return(
-        <div className = "TagsManagerContainer">
-        hola
-            <h1>Administrar Tags</h1>
+        <Container>
+            <h1>Administrar Gastos</h1>
             <div className = "TagsManagerBody">
                 <div className = "TagsManagerDetails">
                     <h2> {title} </h2>
                     {gastos.map(gasto=>(
                     <GastosDetails 
                     key= { gasto.id } 
-                    tag={gasto} 
-                    deleteTag={deleteGasto}
+                    gasto={gasto} 
+                    deleteGasto={deleteGasto}
 
                     />))}
                 </div>
                 <div className = "TagsManagerForm">
                     <GastosForm 
                     key={1}
-                    createTag = {createGasto}
+                    createGasto = {createGasto}
 
                     />
                 </div>
             </div>
-        </div>
+        </Container>
     )
 }
 
