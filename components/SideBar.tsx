@@ -1,13 +1,16 @@
 import React, { useContext, useLayoutEffect, useState } from 'react'
+import {Nav} from "react-bootstrap";
 
-
-export const Navegation = () => {
+export const Sidebar = () => {
 
     return(
-        <div className = "">
-        
-        </div>
+        <Nav className="col-md-12 d-none d-md-block bg-light sidebar">
+            <div className="sidebar-sticky"></div>
+            <Nav.Item>
+                <Nav.Link href="/"></Nav.Link>
+            </Nav.Item>
+        </Nav>
     )
 }
 
-export default Navegation;
+export default Sidebar;

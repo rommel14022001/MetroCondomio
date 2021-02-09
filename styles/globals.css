@@ -14,3 +14,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.Header{
+  height: 150px;
+  background-color: #FF8A00;
+  padding-left: 50px;
+  display: flex;
+  justify-content:flex-start;
+  align-items: center;
+}
