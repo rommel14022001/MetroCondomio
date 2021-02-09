@@ -20,7 +20,6 @@ const resolvers={
     },
     Mutation:{
         async createUsuario(root,{nombre,apellido,active},{models}){
-            console.log(nombre);
             return await models.usuario.create({nombre,apellido,active})
         },
         async createGasto(root,{nombre,monto,active},{models}){
