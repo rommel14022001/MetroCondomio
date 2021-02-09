@@ -34,6 +34,7 @@ export const GastosPage = () => {
                 <h1>Administrar Gastos</h1>
             </Col>
             <div className = "TagsManagerBody">
+               <Row> 
                 <Col className = {styles.GastosManagerDetails}>
                     <h2> {title} </h2>
                     {gastos.map(gasto=>(
@@ -44,13 +45,14 @@ export const GastosPage = () => {
 
                     />))}
                 </Col>
-                <div className = "TagsManagerForm">
+                <Col  className = "TagsManagerForm">
                     <GastosForm 
                     key={1}
                     createGasto = {createGasto}
 
                     />
-                </div>
+                </Col>
+                </Row>
             </div>
         </Container>
     )

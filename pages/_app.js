@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
                     </Col> 
                 </Row>
 
-            </Container>
+      </Container>
       
       
     </>

@@ -1,9 +1,15 @@
 .title {
+  margin: 0;
   margin-left: 100px;
   margin-top: 50px;
+
 }
 
 .GastosManagerDetails {
   margin-top: 100px;
   margin-left: 100px;
+}
+.TagsManagerBody{
+  display: flex;
+
 }

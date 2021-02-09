@@ -8,7 +8,7 @@ export const Sidebar = () => {
             <div className="sidebar-sticky"></div>
 
             <Nav.Item>
-                <Nav.Link >Registrar Pagos</Nav.Link>
+                <Nav.Link className="navlink">Registrar Pagos</Nav.Link>
             </Nav.Item>
             
         </Nav>

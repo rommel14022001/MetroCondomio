@@ -4,12 +4,12 @@ import Sequelize from 'sequelize';
 
 const sequelize = new Sequelize("bd_metrocondominio","root",'Realgud1402.', {
     host:"localhost",
-    dialect:"mysql"
+    dialect:"mysql",
 });
 
 const models={
     usuario:sequelize.import('./usuario.js'),
-    gasto:sequelize.import('./gastos.js')
+    gasto:sequelize.import('./gasto.js')
 }
 
 models.sequelize=sequelize;

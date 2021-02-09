@@ -1,5 +1,12 @@
 const {gql} = require('apollo-server-express');
 
+
+// correo: String!,
+        // aptosIds:String!,
+        // numeroTelf:Integer!,
+        // fechasDeNacimiento:String!,
+        // cedula:Integer!,
+        
 const typeDefs=gql`
     type Usuario{
         id:Int!,
