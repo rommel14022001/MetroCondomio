@@ -29,13 +29,20 @@ a {
   top: 0;
   bottom: 0;
   left: 0;
-  min-height: 100vh !important;
+  min-height: 84vh !important;
   z-index: 100;
   padding: 48px 0 0;
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  
+}
+.navlink{
+  text-decoration: none;
+  color: black;
+  font-size: large;
+  font-weight: 600;
 }
 #sidebar-wrapper{
-  min-height: 100vh !important;
+  min-height: 82vh !important;
   width: 100vw;
   margin-left: -1rem;
   -webkit-transition: margin .25s ease-out;
