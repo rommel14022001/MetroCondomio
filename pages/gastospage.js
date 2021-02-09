@@ -5,16 +5,19 @@ import styles from "../styles/pages/gastospage.module.css";
 import {Container, Button,Col,Row} from 'react-bootstrap';
 import resolvers from '../graphQL/resolvers/resolvers';
 // const models=require('../sequelize/models/index');
+import {crearGasto} from '../sequelize/models/gastos';
+import module from '../sequelize/models/gastos';
 
 export const GastosPage = () => {
 
     const [gastos, setGastos] = useState([]);
     
 
-    const createGasto = (name,amount)=> {
+    const createGasto =  (name,amount)=> {
     
         setGastos( (prevGasto) => {return [...prevGasto ,{name,amount}]} );
-        // console.log(resolvers.Query.getUsuarios(models))                
+        // console.log(resolvers.Query.getUsuarios(models))    
+        crearGasto(module.Gasto,name,amount);
     }
     
     const deleteGasto=  gasto =>{

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@babel/plugin-syntax-jsx": "^7.12.13",
+    "@babel/plugin-transform-regenerator": "^7.12.13",
     "@babel/preset-react": "^7.12.13",
     "@svgr/webpack": "^5.5.0",
     "apollo-server-express": "^2.19.2",
@@ -24,10 +25,14 @@
     "react-dom": "17.0.1",
     "react-router-dom": "^5.2.0",
     "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.6.3",
+    "rxjs-compat": "^6.6.3",
     "sequelize": "5.15.1",
     "sequelize-cli": "5.4.0",
+    "tsconfig": "^7.0.0",
     "type-graphql": "^1.1.1",
-    "typeorm": "^0.2.30"
+    "typeorm": "^0.2.31",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",
