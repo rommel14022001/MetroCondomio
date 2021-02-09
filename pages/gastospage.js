@@ -4,9 +4,6 @@ import React, {useState, useEffect,Fragment} from 'react';
 import styles from "../styles/pages/gastospage.module.css";
 import {Container, Button,Col,Row} from 'react-bootstrap';
 import resolvers from '../graphQL/resolvers/resolvers';
-// const models=require('../sequelize/models/index');
-import {crearGasto} from '../sequelize/models/gastos';
-import module from '../sequelize/models/gastos';
 
 export const GastosPage = () => {
 
@@ -16,8 +13,8 @@ export const GastosPage = () => {
     const createGasto =  (name,amount)=> {
     
         setGastos( (prevGasto) => {return [...prevGasto ,{name,amount}]} );
-        // console.log(resolvers.Query.getUsuarios(models))    
-        crearGasto(module.Gasto,name,amount);
+        // console.log(resolvers.Query.getUsuarios(models.usuario));   
+
     }
     
     const deleteGasto=  gasto =>{
