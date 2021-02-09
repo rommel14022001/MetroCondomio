@@ -46,6 +46,15 @@ app.listen({port:4000}, ()=>{
 
 
 
+// import {GraphQLServer} from 'graphql-yoga'
+// import path from 'path';
+// import resolvers from './graphQL/resolvers/resolvers';
+// export const server = new GraphQLServer({
+
+//     typeDefs:path.join(__direname,'graphql/shema.graphql'),
+//     resolvers
+// });
+
 
 
 
