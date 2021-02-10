@@ -4,7 +4,7 @@ import React, {useState, useEffect,Fragment} from 'react';
 import styles from "../styles/pages/gastospage.module.css";
 import {Container, Button,Col,Row} from 'react-bootstrap';
 import resolvers from '../graphQL/resolvers/resolvers';
-import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery} from '@apollo/client'
+import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery, useMutation } from '@apollo/client'
 export const GastosPage = () => {
     const GET_GASTOS = gql`
     query getGastos {
@@ -72,7 +72,7 @@ export const GastosPage = () => {
                 <Col  className = "mt-5 TagsManagerForm">
                     <GastosForm 
                     key={1}
-                    createGasto = {createGasto}
+                    
 
                     />
                 </Col>

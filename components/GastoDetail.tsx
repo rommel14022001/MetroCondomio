@@ -2,6 +2,7 @@
 import React from 'react';
 import styles from '../styles/components/gastosDetails.module.css';
 import {Col} from 'react-bootstrap'
+
 export const GastosDetails  = ({gasto, deleteGasto}) => {
     
     const {nombre,monto} = gasto;
