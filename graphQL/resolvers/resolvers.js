@@ -18,8 +18,8 @@ const resolvers={
 
     },
     Mutation:{
-        async createUsuario(root,{nombre,apellido,active},{models}){
-            return await models.usuario.create({nombre,apellido,active})
+        async createUsuario(root,{nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,cedula,active},{models}){
+            return await models.usuario.create({nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,cedula,active})
         },
         async createGasto(root,{nombre,monto,active},{models}){
             return await models.gasto.create({nombre,monto,active})
