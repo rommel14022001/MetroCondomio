@@ -5,15 +5,17 @@ import styles from "../styles/pages/gastospage.module.css";
 import {Container, Button,Col,Row} from 'react-bootstrap';
 import resolvers from '../graphQL/resolvers/resolvers';
 
-export const GastosPage = () => {
+export const GastosPage = (props) => {
 
     const [gastos, setGastos] = useState([]);
     
+    console.log(props)
 
     const createGasto =  (name,amount)=> {
     
         setGastos( (prevGasto) => {return [...prevGasto ,{name,amount}]} );
-        // console.log(resolvers.Query.getUsuarios(models.usuario));   
+        // console.log(resolvers.Query.getUsuarios(models.usuario));  
+         
 
     }
     
@@ -25,7 +27,7 @@ export const GastosPage = () => {
 
     
 
-    const title= gastos.length===0 ? 'No Hay Gastos' : 'Gastos';
+    const title= props.props.length===0 ? 'No Hay Gastos' : 'Gastos';
 
     return(
         <Container>
@@ -37,15 +39,15 @@ export const GastosPage = () => {
                <Row> 
                 <Col className = {styles.GastosManagerDetails}>
                     <h2> {title} </h2>
-                    {gastos.map(gasto=>(
+                    {/* {props.props.map(gasto=>(
                     <GastosDetails 
                     key= { gasto.id } 
                     gasto={gasto} 
                     deleteGasto={deleteGasto}
 
-                    />))}
+                    />))} */}
                 </Col>
-                <Col  className = "TagsManagerForm">
+                <Col  className = "mt-5 TagsManagerForm">
                     <GastosForm 
                     key={1}
                     createGasto = {createGasto}
