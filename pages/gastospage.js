@@ -4,12 +4,29 @@ import React, {useState, useEffect,Fragment} from 'react';
 import styles from "../styles/pages/gastospage.module.css";
 import {Container, Button,Col,Row} from 'react-bootstrap';
 import resolvers from '../graphQL/resolvers/resolvers';
+import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery} from '@apollo/client'
+export const GastosPage = () => {
+    const GET_GASTOS = gql`
+    query getGastos {
+        getGastos {
+        id
+        nombre
+        monto
+        }
+    }
+    `;
+    const { loading, error, data } = useQuery(GET_GASTOS)
+    
+    if (loading) console.log('Loading...');
+    if (error) console.log(`Error! ${error.message}`);
 
-export const GastosPage = (props) => {
-
+    useEffect(() => {
+        console.log(data)
+        
+    }, [data])
     const [gastos, setGastos] = useState([]);
     
-    console.log(props)
+    // console.log('las props son: ',props)
 
     const createGasto =  (name,amount)=> {
     
@@ -25,9 +42,14 @@ export const GastosPage = (props) => {
     
     }
 
+
     
 
-    const title= props.props.length===0 ? 'No Hay Gastos' : 'Gastos';
+    let title='No hay gastos';
+    if(data!==undefined){
+
+        title= data.getGastos.length===0 ? 'No Hay Gastos' : 'Gastos';
+    }
 
     return(
         <Container>
@@ -39,13 +61,13 @@ export const GastosPage = (props) => {
                <Row> 
                 <Col className = {styles.GastosManagerDetails}>
                     <h2> {title} </h2>
-                    {/* {props.props.map(gasto=>(
+                    {data===undefined ? <h3>Sin gastos</h3>:data.getGastos.map(gasto=>(
                     <GastosDetails 
                     key= { gasto.id } 
                     gasto={gasto} 
                     deleteGasto={deleteGasto}
 
-                    />))} */}
+                    />))}
                 </Col>
                 <Col  className = "mt-5 TagsManagerForm">
                     <GastosForm 
