@@ -4,20 +4,41 @@ import React, {useState, useEffect,Fragment} from 'react';
 import styles from "../styles/pages/gastospage.module.css";
 import {Container, Button,Col,Row} from 'react-bootstrap';
 import resolvers from '../graphQL/resolvers/resolvers';
+import { gql, useMutation,useQuery } from '@apollo/client';
 
-export const GastosPage = (props) => {
 
-    const [gastos, setGastos] = useState([]);
-    
-    console.log(props)
 
-    const createGasto =  (name,amount)=> {
-    
-        setGastos( (prevGasto) => {return [...prevGasto ,{name,amount}]} );
-        // console.log(resolvers.Query.getUsuarios(models.usuario));  
-         
 
+export const GastosPage = ({props}) => {
+    const GET_GASTOS = gql`
+  query getGastos {
+    getGastos {
+      id
+      nombre
+      monto
     }
+  }
+`;
+  const { loading, error, data } = useQuery(GET_GASTOS)
+  
+  if (loading) console.log('Loading...');
+  if (error) console.log(`Error! ${error.message}`);
+
+  useEffect(() => {
+      console.log(data)
+      
+  }, [data])
+
+    console.log(props);
+    const [gastos, setGastos] = useState([]);
+
+
+    // const createGasto =  (name,amount)=> {
+    
+    //     setGastos( (prevGasto) => {return [...prevGasto ,{name,amount}]} );
+    //     // console.log(resolvers.Query.getUsuarios(models.usuario));   
+        
+    // }
     
     const deleteGasto=  gasto =>{
         
@@ -25,9 +46,12 @@ export const GastosPage = (props) => {
     
     }
 
-    
+    console.log(props)
+    let title='No hay gastos';
+    if(data!==undefined){
 
-    const title= props.props.length===0 ? 'No Hay Gastos' : 'Gastos';
+        title= data.getGastos.length===0 ? 'No Hay Gastos' : 'Gastos';
+    }
 
     return(
         <Container>
@@ -39,19 +63,17 @@ export const GastosPage = (props) => {
                <Row> 
                 <Col className = {styles.GastosManagerDetails}>
                     <h2> {title} </h2>
-                    {/* {props.props.map(gasto=>(
+                    {data===undefined ? <h3>Sin gastos</h3>:data.getGastos.map(gasto=>(
                     <GastosDetails 
                     key= { gasto.id } 
                     gasto={gasto} 
                     deleteGasto={deleteGasto}
 
-                    />))} */}
+                    />))}
                 </Col>
-                <Col  className = "mt-5 TagsManagerForm">
+                <Col  className = "TagsManagerForm">
                     <GastosForm 
                     key={1}
-                    createGasto = {createGasto}
-
                     />
                 </Col>
                 </Row>
@@ -59,5 +81,7 @@ export const GastosPage = (props) => {
         </Container>
     )
 }
+
+
 
 export default GastosPage;
