@@ -12,18 +12,52 @@ export const GastosPage = () => {
         id
         nombre
         monto
+        active
         }
     }
     `;
-    const { loading, error, data } = useQuery(GET_GASTOS)
+    const GET_ACTIVE_GASTOS = gql`
+    query getActiveGastos {
+        getActiveGastos {
+        id
+        nombre
+        monto
+        active
+        }
+    }
+    `;
+    const DELETE_GASTO = gql`
+    mutation updateGasto($id: Int!, $nombre: String!, $monto: Int!, $active:Boolean!) {
+         updateGasto(id: $id, nombre: $nombre, monto: $monto,active: $active) {
+           id
+         }
+    }
+    `;
+    const RECOVER_GASTO = gql`
+    mutation updateGasto($id: Int!, $nombre: String!, $monto: Int!, $active:Boolean!) {
+         updateGasto(id: $id, nombre: $nombre, monto: $monto,active: $active) {
+           id
+         }
+    }
+    `;
+    const [deleteGasto] = useMutation(DELETE_GASTO);
+
+    const [recoverGasto] = useMutation(RECOVER_GASTO);
+
+    const { loading, error, data } = useQuery(GET_GASTOS, {
+        pollInterval: 500
+    })
+
+    // const { activeLoading, activeError, activeData } = useQuery(GET_ACTIVE_GASTOS)
     
     if (loading) console.log('Loading...');
     if (error) console.log(`Error! ${error.message}`);
 
+    const arrayGastos = []
     useEffect(() => {
         console.log(data)
         
-    }, [data])
+    }, [recoverGasto,deleteGasto,data])
     const [gastos, setGastos] = useState([]);
     
     // console.log('las props son: ',props)
@@ -36,11 +70,11 @@ export const GastosPage = () => {
 
     }
     
-    const deleteGasto=  gasto =>{
+    // const deleteG =  gasto =>{
         
-        // deleteGastoDB(gasto);
+    //     deleteGastoDB(gasto);
     
-    }
+    // }
 
 
     
@@ -62,10 +96,12 @@ export const GastosPage = () => {
                 <Col className = {styles.GastosManagerDetails}>
                     <h2> {title} </h2>
                     {data===undefined ? <h3>Sin gastos</h3>:data.getGastos.map(gasto=>(
+                        
                     <GastosDetails 
                     key= { gasto.id } 
                     gasto={gasto} 
                     deleteGasto={deleteGasto}
+                    recoverGasto={recoverGasto}
 
                     />))}
                 </Col>

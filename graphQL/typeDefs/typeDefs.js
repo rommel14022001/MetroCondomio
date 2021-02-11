@@ -1,12 +1,5 @@
 const {gql} = require('apollo-server-express');
-
-
-// correo: String!,
-        // aptosIds:String!,
-        // numeroTelf:Integer!,
-        // fechasDeNacimiento:String!,
-        // cedula:Integer!,
-        
+   
 const typeDefs=gql`
     type Usuario{
         id:Int!,
@@ -31,12 +24,13 @@ const typeDefs=gql`
         getUsuarios:[Usuario]
         getUsuario(id:Int!):Usuario
         getGastos:[Gasto]
+        getActiveGastos:[Gasto]
         getGasto(id:Int!):Gasto
     }
     type Mutation{
         createUsuario(nombre:String!,apellido:String!,rol:Int!,correo: String!,aptosIds:String!,numeroTelf:Int!,fechaDeNacimiento:String!,cedula:Int!,active:Boolean!):Usuario
         createGasto(nombre:String!,monto:Int!,active:Boolean!):Gasto
-    
+        updateGasto(id: Int!, nombre:String!,monto:Int!,active:Boolean!):Gasto
     }
 `;
 // ,correo: String!,aptosIds:String!,numeroTelf:Integer!,fechasDeNacimiento:String!,cedula:Integer!
