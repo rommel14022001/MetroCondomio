@@ -12,6 +12,9 @@ const resolvers={
         async getGastos(root,args,{models}){
             return await models.gasto.findAll()
         },
+        async getActiveGastos(root,args,{models}){
+            return await models.gasto.findAll({ where:{active: true}})
+        },
         async getGasto(root,args,{models}){
             return await models.gasto.findByPk(args.id)
         }
@@ -23,7 +26,17 @@ const resolvers={
         },
         async createGasto(root,{nombre,monto,active},{models}){
             return await models.gasto.create({nombre,monto,active})
+        },
+        async updateGasto(root,{id,nombre,monto,active},{models}){
+            await models.gasto.update({nombre,monto,active}, {where: {
+                id: id
+            }
+        }).then(()=>{
+            return true
+        })
+        
         }
+        
     }
 
 }
