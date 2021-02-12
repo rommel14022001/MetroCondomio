@@ -12,6 +12,12 @@ const typeDefs=gql`
         id:Int!,
         nombre:String!,
         apellido:String!,
+        rol: Int!,
+        correo: String!,
+        aptosIds:String!,
+        numeroTelf:Int!,
+        fechaDeNacimiento:String!,
+        cedula:Int!,
         active:Boolean!
     }
     type Gasto{
@@ -28,10 +34,10 @@ const typeDefs=gql`
         getGasto(id:Int!):Gasto
     }
     type Mutation{
-        createUsuario(nombre:String!,apellido:String!,active:Boolean!):Usuario
+        createUsuario(nombre:String!,apellido:String!,rol:Int!,correo: String!,aptosIds:String!,numeroTelf:Int!,fechaDeNacimiento:String!,cedula:Int!,active:Boolean!):Usuario
         createGasto(nombre:String!,monto:Int!,active:Boolean!):Gasto
     
     }
 `;
-
+// ,correo: String!,aptosIds:String!,numeroTelf:Integer!,fechasDeNacimiento:String!,cedula:Integer!
 module.exports=typeDefs;

@@ -14,30 +14,30 @@ module.exports= (sequelize,DataTypes)=>{
             type:DataTypes.STRING,
             allowNull:false
         },
-        // rol:{
-        //     type:DataTypes.INTEGER,
-        //     allowNull:false
-        // },
-        // correo:{
-        //     type:DataTypes.STRING,
-        //     allowNull:false
-        // },
-        // aptosIds:{
-        //     type:DataTypes.STRING,
-        //     allowNull:false
-        // },
-        // numeroTelf:{
-        //     type:DataTypes.INTEGER,
-        //     allowNull:false
-        // },
-        // fechaDeNacimiento:{
-        //     type:DataTypes.STRING,
-        //     allowNull:false
-        // },
-        // cedula:{
-        //     type:DataTypes.INTEGER,
-        //     allowNull:false
-        // },
+        rol:{
+            type:DataTypes.INTEGER,
+            allowNull:false
+        },
+        correo:{
+            type:DataTypes.STRING,
+            allowNull:false
+        },
+        aptosIds:{
+            type:DataTypes.STRING,
+            allowNull:false
+        },
+        numeroTelf:{
+            type:DataTypes.INTEGER,
+            allowNull:false
+        },
+        fechaDeNacimiento:{
+            type:DataTypes.STRING,
+            allowNull:false
+        },
+        cedula:{
+            type:DataTypes.INTEGER,
+            allowNull:false
+        },
         active:{
             type:DataTypes.BOOLEAN,
             allowNull:false

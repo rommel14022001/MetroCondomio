@@ -6,7 +6,28 @@ import {Container, Button,Col,Row} from 'react-bootstrap';
 import resolvers from '../graphQL/resolvers/resolvers';
 import { gql, useMutation,useQuery } from '@apollo/client';
 
+export const GastosPage = () => {
+    const GET_GASTOS = gql`
+    query getGastos {
+        getGastos {
+        id
+        nombre
+        monto
+        }
+    }
+    `;
+    const { loading, error, data } = useQuery(GET_GASTOS)
+    
+    if (loading) console.log('Loading...');
+    if (error) console.log(`Error! ${error.message}`);
 
+    useEffect(() => {
+        console.log(data)
+        
+    }, [data])
+    const [gastos, setGastos] = useState([]);
+    
+    // console.log('las props son: ',props)
 
 
 export const GastosPage = ({props}) => {
@@ -46,7 +67,10 @@ export const GastosPage = ({props}) => {
     
     }
 
-    console.log(props)
+
+
+    
+
     let title='No hay gastos';
     if(data!==undefined){
 
@@ -82,6 +106,7 @@ export const GastosPage = ({props}) => {
     )
 }
 
+}
 
 
 export default GastosPage;
