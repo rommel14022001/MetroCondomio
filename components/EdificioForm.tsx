@@ -62,7 +62,7 @@ export const EdificioForm  = () => {
         console.log("ladataes:",data)
         
     }, [data])
-    const submitEdificio = evento =>{
+    const submitEdificio = async evento =>{
         
         evento.preventDefault();
 
@@ -72,19 +72,32 @@ export const EdificioForm  = () => {
         // }
         console.log("deberia funcionar ",data);
         
-        createEdificio({ variables: { nombre: name, pisos: parseInt(floors), aptosPPiso: parseInt(aptosPFloor), active: true } }).then(()=>{
-            console.log('entre')
-            let aptoNumberCounter = 0;
-            const totalAptos = parseInt(floors)*parseInt(aptosPFloor)
-            const totalAlicuota = 100/totalAptos
-            for (let i = 0; i < parseInt(floors); i++) {
-                for (let j = 0; j< parseInt(aptosPFloor); i++){
-        //             createApartamento({ variables: { edificioId: data.id, piso: i, aptoNum: aptoNumberCounter,cedula: null,inquilinoNombre: null, alicuota: totalAlicuota ,active: true } })
-                    aptoNumberCounter++;
-                    console.log('piso: ', i, ', Apartamento: ', aptoNumberCounter)
-            }
+
+        await createEdificio({ variables: { nombre: name, pisos: parseInt(floors), aptosPPiso: parseInt(aptosPFloor), active: true } }).then(async ()=>{
+            console.log("entro");
             
-        }
+            console.log("el nombre es: ",name);
+            await refetch().then((response)=>{
+                console.log("data dentro del create",  response.data.getEdificioName.id); /*te amo linea 91*/ 
+                let aptoNumberCounter = 0;
+                let floorCounter = 0;
+                const totalAptos = parseInt(floors)*parseInt(aptosPFloor)
+                const totalAlicuota = 100/totalAptos
+                console.log("n. floors: ", parseInt(floors))
+                console.log("n. atptos: ", parseInt(aptosPFloor))
+                console.log("hola")
+                
+                
+                for (let i = 0; i < parseInt(floors); i++) {
+                    floorCounter++;
+                    for (let j = 0; j< parseInt(aptosPFloor); j++){
+                        aptoNumberCounter++;
+                        createApartamento({ variables: { edificioId:  response.data.getEdificioName.id, piso: floorCounter, aptoNum: aptoNumberCounter,cedula: 0,inquilinoNombre: "", alicuota: totalAlicuota ,active: false } })
+                        console.log('piso: ', floorCounter, ', Apartamento: ', aptoNumberCounter)
+                }
+                
+          }
+        })
         });
         
         // let aptoNumberCounter = 1;
