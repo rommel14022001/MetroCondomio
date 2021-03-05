@@ -29,13 +29,15 @@ export const EdificioForm  = () => {
     }
     `;
     const ADD_APARTAMENTO = gql`
-    mutation createApartamento($edificioId: Int!, $piso: Int!, $aptosNum: Int!,$cedula: Int, $inquilinoNombre: String, $alicuota: Int!, $active:Boolean!) {
-        createApartamento(edificioId: $edificioId, piso: $piso, aptoNum: $aptosNum, cedula: $cedula, inquilinoNombre: $inquilinoNombre, alicuota: $alicuota, active: $active) {
+    mutation createApartamento($edificioId: Int!, $piso: Int!, $aptoNum: Int!,$cedula: Int!, $inquilinoNombre: String!, $alicuota: Float!, $active:Boolean!) {
+        createApartamento(edificioId: $edificioId, piso: $piso, aptoNum: $aptoNum, cedula: $cedula, inquilinoNombre: $inquilinoNombre, alicuota: $alicuota, active: $active) {
            id
-           nombre
-           pisos
-           aptosPPiso
-           active
+           edificioId
+           piso 
+           aptoNum
+           cedula
+           inquilinoNombre
+           alicuota
          }
     }
     `;
@@ -48,7 +50,11 @@ export const EdificioForm  = () => {
         
     // }, [createEdificio])
 
-
+    const sleep = (ms) =>{
+        return new Promise((resolve)=>{
+            setTimeout(resolve,ms)
+        })
+    }
     const [edificio, handleEdificio]=useState({name:'', floors:'', aptosPFloor:''});
     const {name,floors, aptosPFloor}=edificio;
     const [error1, updateError]=useState(false);
@@ -62,7 +68,7 @@ export const EdificioForm  = () => {
         console.log("ladataes:",data)
         
     }, [data])
-    const submitEdificio = evento =>{
+    const submitEdificio = (evento) =>{
         
         evento.preventDefault();
 
@@ -72,16 +78,26 @@ export const EdificioForm  = () => {
         // }
         console.log("deberia funcionar ",data);
         
-        createEdificio({ variables: { nombre: name, pisos: parseInt(floors), aptosPPiso: parseInt(aptosPFloor), active: true } }).then(()=>{
+        createEdificio({ variables: { nombre: name, pisos: parseInt(floors), aptosPPiso: parseInt(aptosPFloor), active: true } }).then(async ()=>{
+            await  sleep(1000);
+            console.log("el nombre es: ",name);
+            refetch();
+            console.log("data dentro del create", data);
             console.log('entre')
             let aptoNumberCounter = 0;
+            let floorCounter = 0;
             const totalAptos = parseInt(floors)*parseInt(aptosPFloor)
             const totalAlicuota = 100/totalAptos
+            console.log("n. floors: ", parseInt(floors))
+            console.log("n. atptos: ", parseInt(aptosPFloor))
+            
+            
             for (let i = 0; i < parseInt(floors); i++) {
-                for (let j = 0; j< parseInt(aptosPFloor); i++){
-        //             createApartamento({ variables: { edificioId: data.id, piso: i, aptoNum: aptoNumberCounter,cedula: null,inquilinoNombre: null, alicuota: totalAlicuota ,active: true } })
+                floorCounter++;
+                for (let j = 0; j< parseInt(aptosPFloor); j++){
                     aptoNumberCounter++;
-                    console.log('piso: ', i, ', Apartamento: ', aptoNumberCounter)
+                    createApartamento({ variables: { edificioId:  3, piso: floorCounter, aptoNum: aptoNumberCounter,cedula: 2,inquilinoNombre: "geb", alicuota: 2 ,active: true } })
+                    console.log('piso: ', floorCounter, ', Apartamento: ', aptoNumberCounter)
             }
             
         }
@@ -131,7 +147,7 @@ export const EdificioForm  = () => {
                         
                         </div>
                         <div className = "Cont">
-                            <button type = "submit"  className="btn-outline btn-success" /*onClick={submitGasto}*/>Agregar</button>  
+                            <button type = "submit"  className="btn-outline btn-success" >Agregar</button>  
                         </div>    
                     </Col>
                 </Row>

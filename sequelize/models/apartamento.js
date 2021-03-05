@@ -24,11 +24,11 @@ module.exports= (sequelize,DataTypes)=>{
         },
         cedula:{
             type:DataTypes.INTEGER,
-            allowNull: true
+            allowNull: false
         },
         inquilinoNombre:{
             type:DataTypes.STRING,
-            allowNull: true
+            allowNull: false
         },
         alicuota:{ /*es el porcentaje pero en double*/ 
             type:DataTypes.FLOAT,

@@ -25,8 +25,8 @@ const typeDefs=gql`
         edificioId: Int!,
         piso:Int!,
         aptoNum: Int!,
-        cedula: Int,
-        inquilinoNombre: String,
+        cedula: Int!,
+        inquilinoNombre: String!,
         alicuota: Float!,
         active:Boolean!
     }
@@ -56,7 +56,7 @@ const typeDefs=gql`
         createUsuario(nombre:String!,apellido:String!,rol:Int!,correo: String!,aptosIds:String!,numeroTelf:Int!,fechaDeNacimiento:String!,cedula:Int!,active:Boolean!):Usuario
         createGasto(nombre:String!,monto:Int!,active:Boolean!):Gasto
         createEdificio(nombre:String!,pisos:Int!,aptosPPiso: Int!,active:Boolean!):Edificio
-        createApartamento(edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
+        createApartamento(edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int!,inquilinoNombre: String!,alicuota: Float!,active:Boolean!):Apartamento
         updateGasto(id: Int!, nombre:String!,monto:Int!,active:Boolean!):Gasto
         updateEdificio(id: Int!,nombre:String!,pisos:Int!,aptosPPiso: Int!,active:Boolean!):Edificio
         updateApartamento(id: Int!,edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
