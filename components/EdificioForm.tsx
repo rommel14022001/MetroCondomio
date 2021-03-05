@@ -74,13 +74,14 @@ export const EdificioForm  = () => {
         
         createEdificio({ variables: { nombre: name, pisos: parseInt(floors), aptosPPiso: parseInt(aptosPFloor), active: true } }).then(()=>{
             console.log('entre')
-            let aptoNumberCounter = 1;
+            let aptoNumberCounter = 0;
             const totalAptos = parseInt(floors)*parseInt(aptosPFloor)
             const totalAlicuota = 100/totalAptos
             for (let i = 0; i < parseInt(floors); i++) {
                 for (let j = 0; j< parseInt(aptosPFloor); i++){
-                    createApartamento({ variables: { edificioId: data.id, piso: i, aptoNum: aptoNumberCounter,cedula: null,inquilinoNombre: null, alicuota: totalAlicuota ,active: true } })
+        //             createApartamento({ variables: { edificioId: data.id, piso: i, aptoNum: aptoNumberCounter,cedula: null,inquilinoNombre: null, alicuota: totalAlicuota ,active: true } })
                     aptoNumberCounter++;
+                    console.log('piso: ', i, ', Apartamento: ', aptoNumberCounter)
             }
             
         }
