@@ -77,7 +77,7 @@ export const EdificioForm  = () => {
             console.log("entro");
             
             console.log("el nombre es: ",name);
-            await refetch().then((response)=>{
+            await refetch().then(async (response)=>{
                 console.log("data dentro del create",  response.data.getEdificioName.id); /*te amo linea 91*/ 
                 let aptoNumberCounter = 0;
                 let floorCounter = 0;
@@ -92,7 +92,7 @@ export const EdificioForm  = () => {
                     floorCounter++;
                     for (let j = 0; j< parseInt(aptosPFloor); j++){
                         aptoNumberCounter++;
-                        createApartamento({ variables: { edificioId:  response.data.getEdificioName.id, piso: floorCounter, aptoNum: aptoNumberCounter,cedula: 0,inquilinoNombre: "", alicuota: totalAlicuota ,active: false } })
+                        await createApartamento({ variables: { edificioId:  response.data.getEdificioName.id, piso: floorCounter, aptoNum: aptoNumberCounter,cedula: 0,inquilinoNombre: "", alicuota: totalAlicuota ,active: false } }).then(()=>{})
                         console.log('piso: ', floorCounter, ', Apartamento: ', aptoNumberCounter)
                 }
                 
