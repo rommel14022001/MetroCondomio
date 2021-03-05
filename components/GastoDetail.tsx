@@ -18,10 +18,10 @@ export const GastosDetails  = ({gasto, deleteGasto, recoverGasto}) => {
 
     const {nombre,monto,id, active} = gasto;
 
-    useEffect(() => {
-        console.log(gasto)
+    // useEffect(() => {
+    //     console.log(gasto)
         
-    }, [data, recoverGasto, active, gasto, deleteGasto])
+    // }, [data, recoverGasto, active, gasto, deleteGasto])
 
     console.log(gasto);
     return(

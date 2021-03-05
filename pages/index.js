@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 import Header from '../components/Header'
 import React from 'react';
 import GastosPage from './gastospage';
+import NewEdifPage from './newedifpage';
 import "bootstrap/dist/css/bootstrap.min.css"
 import "@babel/polyfill";
 import LoginPage from './LoginPage';
@@ -18,10 +19,14 @@ export default function Home() {
   return (
     <ApolloProvider client={client}>
       <div>
-        {/* <RecibosPage props={"28013672"}/> */}
-        <LoginPage/>
+{/* <RecibosPage props={"28013672"}/> */}
+        {/* <LoginPage/> */}
 
-      </div>
+       {/* <GastosPage /> */}
+        
+        <NewEdifPage /*props={launches}*//>
+        
+     </div>
     </ApolloProvider>
   )
 

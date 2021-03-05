@@ -11,7 +11,9 @@ const models={
     usuario:sequelize.import('./usuario.js'),
     gasto:sequelize.import('./gasto.js'),
     residencia:sequelize.import('./residencia.js'),
-    factura:sequelize.import('./factura.js')
+    factura:sequelize.import('./factura.js'),
+    apartamento:sequelize.import('./apartamento.js'),
+    edificio:sequelize.import('./edificio.js')
 }
 
 models.sequelize=sequelize;

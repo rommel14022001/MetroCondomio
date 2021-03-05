@@ -13,6 +13,23 @@ const typeDefs=gql`
         cedula:Int!,
         active:Boolean!
     }
+    type Edificio{
+        id:Int!,
+        nombre:String!,
+        pisos:Int!,
+        aptosPPiso: Int!,
+        active:Boolean!
+    }
+    type Apartamento{
+        id:Int!,
+        edificioId: Int!,
+        piso:Int!,
+        aptoNum: Int!,
+        cedula: Int,
+        inquilinoNombre: String,
+        alicuota: Float!,
+        active:Boolean!
+    }
     type Gasto{
         id:Int!,
         nombre:String!,
@@ -36,21 +53,32 @@ const typeDefs=gql`
         getGastos:[Gasto]
         getActiveGastos:[Gasto]
         getGasto(id:Int!):Gasto
-        getResidencias:[Residencia]
+getResidencias:[Residencia]
         getResidencia(id:Int!):Residencia
-    }
+       getApartamentos: [Apartamento]
+        getActiveApartamentos: [Apartamento]
+        getApartamento (id:Int!):Apartamento
+        getEdificios: [Edificio]
+        getActiveEdificios: [Edificio]
+        getEdificio (id:Int!):Edificio
+        getEdificioName (nombre:String!):Edificio
+        
+}
     type Mutation{
         createUsuario(nombre:String!,apellido:String!,rol:Int!,correo: String!,aptosIds:String!,numeroTelf:Int!,fechaDeNacimiento:String!,cedula:Int!,active:Boolean!):Usuario
         createGasto(nombre:String!,monto:Int!,active:Boolean!):Gasto
         createResidencia(calle:String!,ciudad:String!,municipio:String!,estado:String!,nombre:String!,torres:Int!,active:Boolean!):Residencia
-
-
+        createEdificio(nombre:String!,pisos:Int!,aptosPPiso: Int!,active:Boolean!):Edificio
+        createApartamento(edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
+        
         updateUsuario(id:Int!,nombre:String!,apellido:String!,rol: Int!,correo: String!,aptosIds:String!,numeroTelf:Int!,fechaDeNacimiento:String!,cedula:Int!,active:Boolean!):Usuario
-        updateGasto(id: Int!, nombre:String!,monto:Int!,active:Boolean!):Gasto
         updateResidencia(id:Int!,calle:String!,ciudad:String!,municipio:String!,estado:String!,nombre:String!,torres: Int!,active:Boolean!):Residencia
 
 
+        updateGasto(id: Int!, nombre:String!,monto:Int!,active:Boolean!):Gasto
+        updateEdificio(id: Int!,nombre:String!,pisos:Int!,aptosPPiso: Int!,active:Boolean!):Edificio
+        updateApartamento(id: Int!,edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
     }
 `;
-// ,correo: String!,aptosIds:String!,numeroTelf:Integer!,fechasDeNacimiento:String!,cedula:Integer!
+
 module.exports=typeDefs;

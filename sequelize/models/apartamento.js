@@ -6,30 +6,34 @@ module.exports= (sequelize,DataTypes)=>{
             autoIncrement:true,
             primaryKey:true
         },
+        edificioId:{
+            type:DataTypes.INTEGER,
+            allowNull:false
+        },
+        // facturasIds:{
+        //     type:DataTypes.ARRAY,
+        //     allowNull:true
+        // },
         piso:{
             type:DataTypes.INTEGER,
             allowNull:false
         },
-        idResidencia:{
+        aptoNum:{
             type:DataTypes.INTEGER,
-            allowNull:false
+            allowNull: false
         },
-        ciPropietario:{
+        cedula:{
+            type:DataTypes.INTEGER,
+            allowNull: true
+        },
+        inquilinoNombre:{
             type:DataTypes.STRING,
-            allowNull:false
+            allowNull: true
         },
-        nombreInquilino:{
-            type:DataTypes.STRING,
-            allowNull:false
-        },
-        idsFacturas:{
-            type:DataTypes.ARRAY(DataTypes.DECIMAL),
-            allowNull:false
-        },
-        habitado:{
-            type:DataTypes.BOOLEAN,
-            allowNull:false
-        },
+        alicuota:{ /*es el porcentaje pero en double*/ 
+            type:DataTypes.FLOAT,
+            allowNull: false
+},
         active:{
             type:DataTypes.BOOLEAN,
             allowNull:false
