@@ -95,6 +95,7 @@ export const EdificioForm  = () => {
                 const totalAlicuota = 100/totalAptos
                 console.log("n. floors: ", parseInt(floors))
                 console.log("n. atptos: ", parseInt(aptosPFloor))
+                console.log("hola")
                 
                 
                 for (let i = 0; i < parseInt(floors); i++) {
