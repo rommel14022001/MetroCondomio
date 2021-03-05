@@ -56,12 +56,12 @@ export const EdificioForm  = () => {
     const updateState= evento =>{handleEdificio({...edificio,[evento.target.name] : evento.target.value})}
     const { loading, error, data, refetch } = useQuery(GET_EDIFICIOS_NAME, {
         variables: { nombre:name},
-        // pollInterval: 500,
+        pollInterval: 500,
       });
-    // useEffect(() => {
-    //     console.log("ladataes:",data)
+    useEffect(() => {
+        console.log("ladataes:",data)
         
-    // }, [data])
+    }, [data])
     const submitEdificio = evento =>{
         
         evento.preventDefault();
