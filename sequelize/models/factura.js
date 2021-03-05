@@ -15,7 +15,7 @@ module.exports= (sequelize,DataTypes)=>{
             allowNull:false
         },
         pagoIds:{
-            type:DataTypes.ARRAY(DataType.INTEGER),
+            type:DataTypes.STRING,
             allowNull:false
         },
         active:{

@@ -1,33 +1,33 @@
 module.exports= (sequelize,DataTypes)=>{
     //Esto te permite crear esa capa de ORM
-    const Residencia=sequelize.define('Residencia',{
+    const Apartamento=sequelize.define('Apartamento',{
         id:{
             type:DataTypes.INTEGER,
             autoIncrement:true,
             primaryKey:true
         },
-        torres:{
+        piso:{
             type:DataTypes.INTEGER,
             allowNull:false
         },
-        calle:{
+        idResidencia:{
+            type:DataTypes.INTEGER,
+            allowNull:false
+        },
+        ciPropietario:{
             type:DataTypes.STRING,
             allowNull:false
         },
-        ciudad:{
+        nombreInquilino:{
             type:DataTypes.STRING,
             allowNull:false
         },
-        municipio:{
-            type:DataTypes.STRING,
+        idsFacturas:{
+            type:DataTypes.ARRAY(DataTypes.DECIMAL),
             allowNull:false
         },
-        estado:{
-            type:DataTypes.STRING,
-            allowNull:false
-        },
-        nombre:{
-            type:DataTypes.STRING,
+        habitado:{
+            type:DataTypes.BOOLEAN,
             allowNull:false
         },
         active:{
@@ -35,6 +35,6 @@ module.exports= (sequelize,DataTypes)=>{
             allowNull:false
         }
     },{});
-    return Residencia
+    return Apartamento
 
 }

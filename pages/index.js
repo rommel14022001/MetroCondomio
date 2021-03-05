@@ -5,10 +5,11 @@ import React from 'react';
 import GastosPage from './gastospage';
 import "bootstrap/dist/css/bootstrap.min.css"
 import "@babel/polyfill";
-  import {ApolloClient,InMemoryCache,gql,useQuery} from '@apollo/client';
-
-
+import LoginPage from './LoginPage';
+import RecibosPage from './RecibosPage';
 import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery} from '@apollo/client'
+
+
 export default function Home() {
    const client = new ApolloClient({
     uri: 'http://localhost:4000/graphql',
@@ -17,7 +18,9 @@ export default function Home() {
   return (
     <ApolloProvider client={client}>
       <div>
-        <GastosPage /*props={launches}*//>
+        {/* <RecibosPage props={"28013672"}/> */}
+        <LoginPage/>
+
       </div>
     </ApolloProvider>
   )

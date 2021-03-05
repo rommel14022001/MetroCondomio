@@ -1,5 +1,4 @@
-import GastosDetails from '../components/GastoDetail';
-import GastosForm from '../components/GastosForm';
+import ReciboDetails from '../components/GastoDetail';
 import React, {useState, useEffect,Fragment} from 'react';
 import styles from "../styles/pages/gastospage.module.css";
 import {Container, Button,Col,Row} from 'react-bootstrap';
@@ -8,7 +7,7 @@ import { gql, useMutation,useQuery } from '@apollo/client';
 
 
 
-export const GastosPage = () => {
+export const RecibosPage = (props) => {
     const GET_GASTOS = gql`
     query getGastos {
         getGastos {
@@ -77,7 +76,7 @@ export const GastosPage = () => {
     return(
         <Container>
             <Col className={styles.title}>
-
+                <h1>{props.props}</h1>
                 <h1>Administrar Gastos</h1>
             </Col>
             <div className = "TagsManagerBody">
@@ -86,7 +85,7 @@ export const GastosPage = () => {
                     <h2> {title} </h2>
                     {data===undefined ? <h3>Sin gastos</h3>:data.getGastos.map(gasto=>(
                         
-                    <GastosDetails 
+                    <ReciboDetails 
                     key= { gasto.id } 
                     gasto={gasto} 
                     deleteGasto={deleteGasto}
@@ -94,11 +93,7 @@ export const GastosPage = () => {
 
                     />))}
                 </Col>
-                <Col  className = "TagsManagerForm">
-                    <GastosForm 
-                    key={1}
-                    />
-                </Col>
+                
                 </Row>
             </div>
         </Container>
@@ -107,4 +102,4 @@ export const GastosPage = () => {
 
 
 
-export default GastosPage;
+export default RecibosPage;
