@@ -9,7 +9,9 @@ const sequelize = new Sequelize("bd_metrocondominio","root",'root', {
 
 const models={
     usuario:sequelize.import('./usuario.js'),
-    gasto:sequelize.import('./gasto.js')
+    gasto:sequelize.import('./gasto.js'),
+    apartamento:sequelize.import('./apartamento.js'),
+    edificio:sequelize.import('./edificio.js')
 }
 
 models.sequelize=sequelize;

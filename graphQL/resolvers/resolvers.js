@@ -35,6 +35,9 @@ const resolvers={
         },
         async getEdificio(root, arg, {models}){
             return await models.edificio.findByPk(arg.id)
+        },
+        async getEdificioName(root, arg, {models}){
+            return await models.edificio.findOne({ where:{nombre:arg.nombre}})
         }
 
     },
@@ -45,8 +48,8 @@ const resolvers={
         async createEdificio(root,{nombre,pisos,aptosPPiso,active},{models}){
             return await models.edificio.create({nombre,pisos,aptosPPiso,active})
         },
-        async createApartamento(root,{edificioId,facturasIds,piso,aptoNum,cedula,inquilinoNombre,alicuota,active},{models}){
-            return await models.apartamento.create({edificioId,facturasIds,piso,aptoNum,cedula,inquilinoNombre,alicuota,active})
+        async createApartamento(root,{edificioId,piso,aptoNum,cedula,inquilinoNombre,alicuota,active},{models}){
+            return await models.apartamento.create({edificioId,piso,aptoNum,cedula,inquilinoNombre,alicuota,active})
         },
         async createGasto(root,{nombre,monto,active},{models}){
             return await models.gasto.create({nombre,monto,active})
@@ -67,8 +70,8 @@ const resolvers={
             return true
         })
         },
-        async updateApartamento(root,{id,edificioId,facturasIds,piso,aptoNum,cedula,inquilinoNombre,alicuota,active},{models}){
-            await models.apartamento.update({edificioId,facturasIds,piso,aptoNum,cedula,inquilinoNombre,alicuota,active}, {where: {
+        async updateApartamento(root,{id,edificioId,piso,aptoNum,cedula,inquilinoNombre,alicuota,active},{models}){
+            await models.apartamento.update({edificioId,piso,aptoNum,cedula,inquilinoNombre,alicuota,active}, {where: {
                 id: id
             }
         }).then(()=>{

@@ -10,10 +10,10 @@ module.exports= (sequelize,DataTypes)=>{
             type:DataTypes.INTEGER,
             allowNull:false
         },
-        facturasIds:{
-            type:DataTypes.ARRAY(DataType.INTEGER),
-            allowNull:true
-        },
+        // facturasIds:{
+        //     type:DataTypes.ARRAY,
+        //     allowNull:true
+        // },
         piso:{
             type:DataTypes.INTEGER,
             allowNull:false
@@ -31,7 +31,7 @@ module.exports= (sequelize,DataTypes)=>{
             allowNull: true
         },
         alicuota:{ /*es el porcentaje pero en double*/ 
-            type:DataTypes.DOUBLE,
+            type:DataTypes.FLOAT,
             allowNull: false
         },
         active:{
