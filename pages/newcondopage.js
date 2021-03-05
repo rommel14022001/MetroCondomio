@@ -10,7 +10,9 @@ export const NewCondoPage = () => {
         <Container>
             <Col className={styles.title}>
 
-                <h1>Administrar Condos</h1>
+                <h1>Administrar Condo</h1>
+
+
             </Col>
             
         </Container>

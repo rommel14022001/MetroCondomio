@@ -17,12 +17,36 @@ const resolvers={
         },
         async getGasto(root,args,{models}){
             return await models.gasto.findByPk(args.id)
+        },
+        async getApartamentos(root, arg, {models}){
+            return await models.apartamento.findAll()
+        },
+        async getActiveApartamentos(root, arg, {models}){
+            return await models.apartamento.findAll({ where:{active: true}})
+        },
+        async getApartamento(root, arg, {models}){
+            return await models.apartamento.findByPk(arg.id)
+        },
+        async getEdificios(root, arg, {models}){
+            return await models.edificio.findAll()
+        },
+        async getActiveEdificios(root, arg, {models}){
+            return await models.edificio.findAll({ where:{active: true}})
+        },
+        async getEdificio(root, arg, {models}){
+            return await models.edificio.findByPk(arg.id)
         }
 
     },
     Mutation:{
         async createUsuario(root,{nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,cedula,active},{models}){
             return await models.usuario.create({nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,cedula,active})
+        },
+        async createEdificio(root,{nombre,pisos,aptosPPiso,active},{models}){
+            return await models.edificio.create({nombre,pisos,aptosPPiso,active})
+        },
+        async createApartamento(root,{edificioId,facturasIds,piso,aptoNum,cedula,inquilinoNombre,alicuota,active},{models}){
+            return await models.apartamento.create({edificioId,facturasIds,piso,aptoNum,cedula,inquilinoNombre,alicuota,active})
         },
         async createGasto(root,{nombre,monto,active},{models}){
             return await models.gasto.create({nombre,monto,active})
@@ -34,9 +58,23 @@ const resolvers={
         }).then(()=>{
             return true
         })
-        
+        },
+        async updateEdificio(root,{id,nombre,pisos,aptosPPiso,active},{models}){
+            await models.edificio.update({nombre,pisos,aptosPPiso}, {where: {
+                id: id
+            }
+        }).then(()=>{
+            return true
+        })
+        },
+        async updateApartamento(root,{id,edificioId,facturasIds,piso,aptoNum,cedula,inquilinoNombre,alicuota,active},{models}){
+            await models.apartamento.update({edificioId,facturasIds,piso,aptoNum,cedula,inquilinoNombre,alicuota,active}, {where: {
+                id: id
+            }
+        }).then(()=>{
+            return true
+        })
         }
-        
     }
 
 }
