@@ -58,6 +58,10 @@ const typeDefs=gql`
         metodo: String!,
         active: Boolean!
     }
+    type PagoFactura{
+        pagoId: Int!,
+        facturaId: Int!
+    }
     type Query{
                 
         getUsuarios:[Usuario]
@@ -82,6 +86,7 @@ const typeDefs=gql`
         getMetodosPago: [MetodoPago]
         getActiveMetodosPago : [MetodoPago]
         getMetodoPagoId (id: Int!) : MetodoPago
+        getPagoFactura: [PagoFactura]
         
     }
     type Mutation{
@@ -98,6 +103,7 @@ const typeDefs=gql`
         updateEdificio(id: Int!,nombre:String!,pisos:Int!,aptosPPiso: Int!,active:Boolean!):Edificio
         updateApartamento(id: Int!,edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
         updateMetodoPago(id: Int!, metodo: String!, active: Boolean!): MetodoPago
+        createPatoFactura(pagoId: Int!, facturaId: Int!): PagoFactura
     }
 `;
 

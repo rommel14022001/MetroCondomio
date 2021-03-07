@@ -69,6 +69,10 @@ const resolvers={
         async getMetodoPagoId(root, arg, {models}){
             return await models.metodoPago.findByPk(arg.id)
         },
+        async getPagoFactura(root, arg, {models}){
+            return await models.PagoFactura.findAll()
+        },
+
 
     },
     Mutation:{
@@ -95,6 +99,9 @@ const resolvers={
         },
         async createMetodoPago(root,{metodo,active},{models}){
             return await models.metodoPago.create({metodo,active})
+        },
+        async createPagoFactura(root,{pagoId,facturaId},{models}){
+            return await models.pago_factura.create({pagoId,facturaId})
         },
         async updateMetodoPago(root,{id,metodo,active},{models}){
             await models.metodoPago.create({metodo,active},{where: {
