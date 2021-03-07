@@ -2,14 +2,16 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Header from '../components/Header'
 import React from 'react';
-import GastosPage from './gastospage';
-import NewEdifPage from './newedifpage';
+
 import "bootstrap/dist/css/bootstrap.min.css"
 import "@babel/polyfill";
+
+import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery} from '@apollo/client'
+import GastosPage from './gastospage';
+import NewEdifPage from './newedifpage';
 import LoginPage from './LoginPage';
 import RecibosPage from './RecibosPage';
-import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery} from '@apollo/client'
-
+import AdminUserAptosPage from './admin/adminUserAptosPage';
 
 export default function Home() {
    const client = new ApolloClient({
@@ -20,11 +22,8 @@ export default function Home() {
     <ApolloProvider client={client}>
       <div>
 {/* <RecibosPage props={"28013672"}/> */}
-        {/* <LoginPage/> */}
-
+      <AdminUserAptosPage/>        
        {/* <GastosPage /> */}
-        
-        <NewEdifPage /*props={launches}*//>
         
      </div>
     </ApolloProvider>

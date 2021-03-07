@@ -23,8 +23,8 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "sequelize/models/index.js", "sequelize/models/gastos.js", "pages/example.js", "pages/index.js", "pages/gastospage.js", "graphQL/typeDefs/typeDefs.js", "graphQL/resolvers/resolvers.js", "sequelize/models/usuario.js"  ],
+    "**/*.tsx", 
+    "sequelize/models/index.js", "sequelize/models/gastos.js", "pages/example.js", "pages/index.js", "pages/gastospage.js", "graphQL/typeDefs/typeDefs.js", "graphQL/resolvers/resolvers.js", "sequelize/models/usuario.js", "components/LoginForm.tsx ","components/ActiveEdifList.js",  ],
   "exclude": [
     "node_modules"
   ]

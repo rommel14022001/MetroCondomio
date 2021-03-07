@@ -1,23 +1,26 @@
-import EdificioDetails from '../components/EdificioDetail';
-import EdificioForm from '../components/EdificioForm';
+
 import React, {useState, useEffect,Fragment} from 'react';
 import styles from "../styles/pages/gastospage.module.css";
-import {Container, Button,Col,Row} from 'react-bootstrap';
-import resolvers from '../graphQL/resolvers/resolvers';
+import {Container, Button,Col,Row,Dropdown,DropdownButton,InputGroup} from 'react-bootstrap';
+
 import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery, useMutation } from '@apollo/client'
 
+import EdificioForm from './EdificioForm'
 
 
-export const NewCondoPage = () => {
+export const ActiveEdifList = ({edif,handleEdif}) => {
     
-    const GET_EDIFICIOS = gql`
-    query getEdificios {
-        getEdificios {
-        id
-        nombre
-        pisos
-        aptosPPiso
-        active
+    const GET_APARTAMENTOS = gql`
+    query getApartamentos {
+        getApartamentos {
+            id,
+            edificioId ,
+            piso,
+            aptoNum,
+            cedula,
+            inquilinoNombre,
+            alicuota,
+            active
         }
     }
     `;
@@ -51,7 +54,7 @@ export const NewCondoPage = () => {
 
     const [recoverEdificio] = useMutation(RECOVER_EDIFICIO);
 
-    const { loading, error, data } = useQuery(GET_EDIFICIOS, {
+    const { loading, error, data } = useQuery(GET_ACTIVE_EDIFICIOS, {
         pollInterval: 500
     })
     
@@ -61,9 +64,11 @@ export const NewCondoPage = () => {
     const arrayEdificios = []
     // useEffect(() => {
     //     console.log(data)
-        
-    // }, [recoverEdificio,deleteEdificio,data])
+    //     console.log(edif)
+    //     console.log('ROMMEL')
+    // }, [edif])
     const [edificios, setEdificios] = useState([]);
+    
     const createEdificio =  (name,floors,aptosPFloor)=> {
     
         setEdificios( (prevEdificio) => {return [...prevEdificio ,{name,floors, aptos, aptosPFloor}]} );
@@ -74,41 +79,49 @@ export const NewCondoPage = () => {
     let title='No hay edificios';
     if(data!==undefined){
 
-        title= data.getEdificios.length===0 ? 'No Hay Edificios' : 'Edificios';
+        title= data.getActiveEdificios.length===0 ? 'No Hay Edificios' : 'Edificios';
     }
 
+    
     return(
         <Container>
-            <Col className={styles.title}>
-
-                <h1>Administrar Condo</h1>
-
-
-            </Col>
+            
             <div className = "TagsManagerBody">
             <Row> 
-                <Col className = {styles.GastosManagerDetails}>
+                <Col className={styles.GastosManagerDetails}>
                     <h2> {title} </h2>
-                    {data===undefined ? <h3>Sin edificios</h3>:data.getEdificios.map(edificio=>(
-                        
-                    <EdificioDetails 
-                    key= { edificio.id } 
-                    edificio={edificio} 
-                    deleteEdificio={deleteEdificio}
-                    recoverEdificio={recoverEdificio}
-
-                    />))}
-                </Col>
-                <Col  className = "mt-5 TagsManagerForm">
-                    <EdificioForm 
-                    key={1}
                     
+                    <InputGroup className="mb-3">
 
-                    />
+                        <DropdownButton
+                                as={InputGroup.Append}
+                                variant="outline-secondary"
+                                title="Dropdown"
+                                id="input-group-dropdown-2"
+                                >
+
+                                {data===undefined ? <h3>Sin edificios</h3>:data.getActiveEdificios.map(edificio=>(
+
+                                    <Dropdown.Item href="#" 
+                                        onClick={(e)=>{handleEdif(e.target.name)}}
+                                        name={edificio.nombre}
+                                        key={edificio.id}
+                                        >{edificio.nombre}
+                                    </Dropdown.Item>
+                                                                
+                                ))}
+                        </DropdownButton>
+                            
+                    </InputGroup>
                 </Col>
+                
                 </Row>
             </div>
         </Container>
     )
 }
-export default NewCondoPage;
+export default ActiveEdifList;
+
+
+
+

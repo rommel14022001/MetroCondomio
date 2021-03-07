@@ -31,8 +31,17 @@ const resolvers={
         async getActiveApartamentos(root, arg, {models}){
             return await models.apartamento.findAll({ where:{active: true}})
         },
+        async getNotActiveApartamentos(root, arg, {models}){
+            return await models.apartamento.findAll({ where:{active: false}})
+        },
+        async getNotActiveApartamentosByEdif(root, arg, {models}){
+            return await models.apartamento.findAll({ where:{active: false,edificioId:arg.edificioId}})
+        },
         async getApartamento(root, arg, {models}){
             return await models.apartamento.findByPk(arg.id)
+        },
+        async getApartamentoByEdifIdByAptoNum(root, arg, {models}){
+            return await models.apartamento.findOne({where:{aptoNum:arg.aptoNum,edificioId:arg.edificioId}})
         },
         async getEdificios(root, arg, {models}){
             return await models.edificio.findAll()
@@ -45,7 +54,17 @@ const resolvers={
         },
         async getEdificioName(root, arg, {models}){
             return await models.edificio.findOne({ where:{nombre:arg.nombre}})
+        },
+        async getUserApartamentos(root, arg, {models}){
+            return await models.UserApartamento.findAll()
+        },
+        async getUserApartamentoUsuario(root, arg, {models}){
+            return await models.UserApartamento.findAll({ where:{idUsuario:arg.idUsuario}})
+        },
+        async getUserApartamentoApartamento(root, arg, {models}){
+            return await models.UserApartamento.findOne({ where:{idApartamento:arg.idApartamento}})
         }
+        
 
     },
     Mutation:{
@@ -80,6 +99,9 @@ const resolvers={
         async createResidencia(root,{calle,ciudad,municipio,estado,nombre,torres,active},{models}){
             return await models.residencia.create({calle,ciudad,municipio,estado,nombre,torres,active})
         },
+        async createUserApartamento(root,{aptoId,idUsuario},{models}){
+            return await models.UserApartamento.create({aptoId,idUsuario})
+        },
         async updateResidencia(root,{id,calle,ciudad,municipio,estado,nombre,torres,active},{models}){
             await models.residencia.update({calle,ciudad,municipio,estado,nombre,torres,active}, {where: {
         }})},
@@ -94,6 +116,14 @@ const resolvers={
         async updateApartamento(root,{id,edificioId,piso,aptoNum,cedula,inquilinoNombre,alicuota,active},{models}){
             await models.apartamento.update({edificioId,piso,aptoNum,cedula,inquilinoNombre,alicuota,active}, {where: {
                id: id
+            }
+        }).then(()=>{
+            return true
+        })
+      },
+      async updateUserApartamento(root,{idUsuario,idApartamento},{models}){
+            await models.UserApartamento.update({idUsuario,idApartamento}, {where: {
+               idUsuario: idUsuario
             }
         }).then(()=>{
             return true
