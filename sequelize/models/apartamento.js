@@ -30,7 +30,7 @@ module.exports= (sequelize,DataTypes)=>{
         alicuota:{ /*es el porcentaje pero en float*/ 
             type:DataTypes.FLOAT,
             allowNull: false
-        },
+},
         active:{
             type:DataTypes.BOOLEAN,
             allowNull:false

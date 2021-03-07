@@ -18,10 +18,10 @@ export const GastosForm = () => {
     }
     `;
     const [createGasto, { data }] = useMutation(ADD_GASTO);
-    useEffect(() => {
-        console.log(createGasto);
+    // useEffect(() => {
+    //     console.log(createGasto);
         
-    }, [createGasto])
+    // }, [createGasto])
 
     
     const [gasto, handleGasto]=useState({name:'', amount:''});

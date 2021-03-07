@@ -6,15 +6,7 @@ module.exports= (sequelize,DataTypes)=>{
             autoIncrement:true,
             primaryKey:true
         },
-        aptosPorPiso:{
-            type:DataTypes.INTEGER,
-            allowNull:false
-        },
         torres:{
-            type:DataTypes.INTEGER,
-            allowNull:false
-        },
-        pisos:{
             type:DataTypes.INTEGER,
             allowNull:false
         },
@@ -31,6 +23,10 @@ module.exports= (sequelize,DataTypes)=>{
             allowNull:false
         },
         estado:{
+            type:DataTypes.STRING,
+            allowNull:false
+        },
+        nombre:{
             type:DataTypes.STRING,
             allowNull:false
         },

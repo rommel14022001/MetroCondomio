@@ -3,7 +3,7 @@ import styles from '../styles/components/gastosDetails.module.css';
 import {Col} from 'react-bootstrap'
 import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery, useMutation } from '@apollo/client'
 
-export const EdificioDetail  = ({edificio, deleteEdificio, recoverEdificio}) => {
+export const ApartamentoDetail  = ({edificio, deleteEdificio, recoverEdificio}) => {
     
 
     const {id,nombre,pisos,aptosPPiso,active} = edificio;
@@ -26,4 +26,4 @@ export const EdificioDetail  = ({edificio, deleteEdificio, recoverEdificio}) => 
     )
 }
 
-export default EdificioDetail;
+export default ApartamentoDetail;

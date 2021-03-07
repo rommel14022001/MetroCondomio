@@ -12,7 +12,6 @@ models.sequelize.sync(); //Sincronizacion de los modelos con la BD
 
 
 
-
 //GraphQL
 //typesDefs
 import typeDefs from './graphQL/typeDefs/typeDefs';
@@ -43,7 +42,6 @@ server.applyMiddleware({app});
 app.listen({port:4000}, ()=>{
     console.log('Corriendo servidor Apollo en http://localhost:4000'+server.graphqlPath)
 })
-
 
 
 
