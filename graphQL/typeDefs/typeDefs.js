@@ -47,7 +47,17 @@ const typeDefs=gql`
         facturaId:Int!,
         apartamentoId:Int!
     }
-    
+    type Pago{
+        id: Int!,
+        metodoId: Int!,
+        monto: Float!
+        active: Boolean!
+    }
+    type MetodoPago{
+        id: Int!,
+        metodo: String!,
+        active: Boolean!
+    }
     type Query{
                 
         getUsuarios:[Usuario]
@@ -66,6 +76,12 @@ const typeDefs=gql`
         getActiveFacturas: [Factura]
         getFacturaId (id: Int!):Factura
         getApartamentoFactura : [Apartamento_Factura]
+        getPagos: [Pago]
+        getActivePagos : [Pago]
+        getPagoId (id: Int!): Pago
+        getMetodosPago: [MetodoPago]
+        getActiveMetodosPago : [MetodoPago]
+        getMetodoPagoId (id: Int!) : MetodoPago
         
     }
     type Mutation{
@@ -75,11 +91,13 @@ const typeDefs=gql`
         createApartamento(edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
         createFactura(fechaDeCreacion: String!, fechaDeVencimiento: String!, monto: Float!, active: Boolean!): Factura
         createApartamentoFactura(facturaId: Int!, apartamentoId: Int!): Apartamento_Factura
+        createPago(metodoId: Int!, monto:Int!, active: Boolean!): Pago
+        createMetodoPago(metodo: String!, active: Boolean!): MetodoPago
         updateFactura(id: Int!, fechaDeCreacion: String!, fechaDeVencimiento: String!, monto: Float!, active: Boolean!):Factura
         updateGasto(id: Int!, nombre:String!,monto:Int!,active:Boolean!):Gasto
         updateEdificio(id: Int!,nombre:String!,pisos:Int!,aptosPPiso: Int!,active:Boolean!):Edificio
         updateApartamento(id: Int!,edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
-   
+        updateMetodoPago(id: Int!, metodo: String!, active: Boolean!): MetodoPago
     }
 `;
 

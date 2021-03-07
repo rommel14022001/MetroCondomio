@@ -15,7 +15,7 @@ const models={
     factura:sequelize.import('./factura.js'),
     apartamento_factura:sequelize.import('./apartamento_factura.js'),
     pago:sequelize.import('./pago.js'),
-    // metodoPago:sequelize.import('./metodoPago.js'),
+    metodoPago:sequelize.import('./metodoPago.js'),
 }
 
 models.sequelize=sequelize;
