@@ -16,6 +16,6 @@ module.exports= (sequelize,DataTypes)=>{
         // }
 
     },{});
-    return MetodoPago
+    return Pago_Factura
 
 }
