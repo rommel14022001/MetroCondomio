@@ -8,19 +8,13 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "@babel/polyfill";
 import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery} from '@apollo/client'
 export default function Home() {
-   const client = new ApolloClient({
-    uri: 'http://localhost:4000/graphql',
-    cache: new InMemoryCache()
-  });
   return (
-    <ApolloProvider client={client}>
       <div>
         {/* <GastosPage /> */}
         
         <NewEdifPage /*props={launches}*//>
         
       </div>
-    </ApolloProvider>
   )
 
 }

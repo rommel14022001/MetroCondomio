@@ -6,16 +6,16 @@ module.exports= (sequelize,DataTypes)=>{
             autoIncrement:true,
             primaryKey:true
         },
-        residenciaId:{
-            type:DataTypes.INTEGER,
+        fechaDeCreacion:{
+            type:DataTypes.DATEONLY,
             allowNull:false
         },
-        fecha:{
-            type:DataTypes.STRING,
+        fechaDeVencimiento:{
+            type:DataTypes.DATEONLY,
             allowNull:false
         },
-        pagoIds:{
-            type:DataTypes.ARRAY(DataType.INTEGER),
+        monto:{
+            type:DataTypes.FLOAT,
             allowNull:false
         },
         active:{

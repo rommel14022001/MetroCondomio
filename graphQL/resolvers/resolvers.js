@@ -38,6 +38,15 @@ const resolvers={
         },
         async getEdificioName(root, arg, {models}){
             return await models.edificio.findOne({ where:{nombre:arg.nombre}})
+        },
+        async getFacturas(root, arg, {models}){
+            return await models.factura.findAll()
+        },
+        async getActiveFacturas(root, arg, {models}){
+            return await models.factura.findAll({ where:{active: true}})
+        },
+        async getFacturaId(root, arg, {models}){
+            return await models.factura.findByPk(arg.id)
         }
 
     },
@@ -53,6 +62,18 @@ const resolvers={
         },
         async createGasto(root,{nombre,monto,active},{models}){
             return await models.gasto.create({nombre,monto,active})
+        },
+        async createFactura(root,{fechaDeCreacion,fechaDeVencimiento,monto,active},{models}){
+            return await models.factura.create({fechaDeCreacion,fechaDeVencimiento,monto,active})
+        },
+        
+        async updateFactura(root,{id,fechaDeCreacion,fechaDeVencimiento,monto,active},{models}){
+            await models.factura.create({fechaDeCreacion,fechaDeVencimiento,monto,active},{where: {
+                id: id
+            }
+        }).then(()=>{
+            return true
+        })
         },
         async updateGasto(root,{id,nombre,monto,active},{models}){
             await models.gasto.update({nombre,monto,active}, {where: {

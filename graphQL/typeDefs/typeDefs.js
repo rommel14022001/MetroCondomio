@@ -36,6 +36,13 @@ const typeDefs=gql`
         monto:Int!,
         active:Boolean!
     }
+    type Factura{
+        id:Int!,
+        fechaDeCreacion:String!,
+        fechaDeVencimiento:String!,
+        monto:Float!,
+        active:Boolean!
+    }
     type Query{
                 
         getUsuarios:[Usuario]
@@ -50,6 +57,9 @@ const typeDefs=gql`
         getActiveEdificios: [Edificio]
         getEdificio (id:Int!):Edificio
         getEdificioName (nombre:String!):Edificio
+        getFacturas: [Factura]
+        getActiveFacturas: [Factura]
+        getFacturaId (id: Int!):Factura
         
     }
     type Mutation{
@@ -57,6 +67,8 @@ const typeDefs=gql`
         createGasto(nombre:String!,monto:Int!,active:Boolean!):Gasto
         createEdificio(nombre:String!,pisos:Int!,aptosPPiso: Int!,active:Boolean!):Edificio
         createApartamento(edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
+        createFactura(fechaDeCreacion: String!, fechaDeVencimiento: String!, monto: Float!, active: Boolean!): Factura
+        updateFactura(id: Int!, fechaDeCreacion: String!, fechaDeVencimiento: String!, monto: Float!, active: Boolean!):Factura
         updateGasto(id: Int!, nombre:String!,monto:Int!,active:Boolean!):Gasto
         updateEdificio(id: Int!,nombre:String!,pisos:Int!,aptosPPiso: Int!,active:Boolean!):Edificio
         updateApartamento(id: Int!,edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento

@@ -8,7 +8,8 @@ module.exports= (sequelize,DataTypes)=>{
         },
         edificioId:{
             type:DataTypes.INTEGER,
-            allowNull:false
+            allowNull:false,
+            primaryKey:true
         },
         // facturasIds:{
         //     type:DataTypes.ARRAY,
