@@ -47,7 +47,10 @@ const resolvers={
         },
         async getFacturaId(root, arg, {models}){
             return await models.factura.findByPk(arg.id)
-        }
+        },
+        async getApartamentoFactura(root, arg, {models}){
+            return await models.apartamento_factura.findAll()
+        },
 
     },
     Mutation:{
@@ -65,6 +68,9 @@ const resolvers={
         },
         async createFactura(root,{fechaDeCreacion,fechaDeVencimiento,monto,active},{models}){
             return await models.factura.create({fechaDeCreacion,fechaDeVencimiento,monto,active})
+        },
+        async createApartamentoFactura(root,{facturaId,apartamentoId},{models}){
+            return await models.apartamento_factura.create({facturaId,apartamentoId})
         },
         
         async updateFactura(root,{id,fechaDeCreacion,fechaDeVencimiento,monto,active},{models}){

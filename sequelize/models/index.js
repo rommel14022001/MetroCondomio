@@ -12,7 +12,10 @@ const models={
     gasto:sequelize.import('./gasto.js'),
     apartamento:sequelize.import('./apartamento.js'),
     edificio:sequelize.import('./edificio.js'),
-    factura:sequelize.import('./factura.js')
+    factura:sequelize.import('./factura.js'),
+    apartamento_factura:sequelize.import('./apartamento_factura.js'),
+    pago:sequelize.import('./pago.js'),
+    // metodoPago:sequelize.import('./metodoPago.js'),
 }
 
 models.sequelize=sequelize;
