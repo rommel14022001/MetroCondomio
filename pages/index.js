@@ -12,15 +12,16 @@ import NewEdifPage from './newedifpage';
 import LoginPage from './LoginPage';
 import RecibosPage from './RecibosPage';
 import AdminUserAptosPage from './admin/adminUserAptosPage';
+import FacturasPage from './facturaspage';
 
 export default function Home() {
   return (
       <div>
 {/* <RecibosPage props={"28013672"}/> */}
-      <AdminUserAptosPage/>        
+      <FacturasPage/>        
        {/* <GastosPage /> */}
         
-        <NewEdifPage /*props={launches}*//>
+        {/* <NewEdifPage /> */}
         
       </div>
   )

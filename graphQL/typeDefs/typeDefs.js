@@ -85,7 +85,7 @@ const typeDefs=gql`
         getGasto(id:Int!):Gasto
         getResidencias:[Residencia]
         getResidencia(id:Int!):Residencia
-       getApartamentos: [Apartamento]
+        getApartamentos: [Apartamento]
         getActiveApartamentos: [Apartamento]
         getApartamento (id:Int!):Apartamento
         getEdificios: [Edificio]
@@ -128,13 +128,8 @@ const typeDefs=gql`
         updateMetodoPago(id: Int!, metodo: String!, active: Boolean!): MetodoPago
         createPagoFactura(pagoId: Int!, facturaId: Int!): PagoFactura
         createUserApartamento(aptoId:Int!,idUsuario:Int!):UserApartamento
-
-
         updateUsuario(id:Int!,nombre:String!,apellido:String!,rol: Int!,correo: String!,aptosIds:String!,numeroTelf:Int!,fechaDeNacimiento:String!,cedula:Int!,active:Boolean!):Usuario
         updateResidencia(id:Int!,calle:String!,ciudad:String!,municipio:String!,estado:String!,nombre:String!,torres: Int!,active:Boolean!):Residencia
-        updateGasto(id: Int!, nombre:String!,monto:Int!,active:Boolean!):Gasto
-        updateEdificio(id: Int!,nombre:String!,pisos:Int!,aptosPPiso: Int!,active:Boolean!):Edificio
-        updateApartamento(id: Int!,edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
         updateUserApartamento(IdUsuario:Int!,idApartamento:Int!):UserApartamento
     }
 `;

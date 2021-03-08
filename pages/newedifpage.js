@@ -57,28 +57,17 @@ export const NewCondoPage = () => {
     const { loading, error, data } = useQuery(GET_EDIFICIOS, {
         pollInterval: 500
     })
-<<<<<<< HEAD
 
     
 
-=======
-    
->>>>>>> 4fd0c9199fbc53fc10003d23eb6c149cd5c3fa02
     if (loading) console.log('Loading...');
     if (error) console.log(`Error! ${error.message}`);
 
     const arrayEdificios = []
-<<<<<<< HEAD
     useEffect(() => {
         console.log(data)
         console.log("la data de gasto es: ", dataGasto);
     }, [recoverEdificio,deleteEdificio,data, dataGasto])
-=======
-    // useEffect(() => {
-    //     console.log(data)
-        
-    // }, [recoverEdificio,deleteEdificio,data])
->>>>>>> 4fd0c9199fbc53fc10003d23eb6c149cd5c3fa02
     const [edificios, setEdificios] = useState([]);
     const createEdificio =  (name,floors,aptosPFloor)=> {
     

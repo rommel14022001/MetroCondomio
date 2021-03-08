@@ -4,10 +4,7 @@ import React, {useState, useEffect,Fragment} from 'react';
 import styles from "../styles/pages/gastospage.module.css";
 import {Container, Button,Col,Row} from 'react-bootstrap';
 import resolvers from '../graphQL/resolvers/resolvers';
-import { gql, useMutation,useQuery } from '@apollo/client';
-
-
-
+import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery, useMutation } from '@apollo/client'
 export const GastosPage = () => {
     const GET_GASTOS = gql`
     query getGastos {
@@ -65,6 +62,20 @@ export const GastosPage = () => {
     
     // console.log('las props son: ',props)
 
+    const createGasto =  (name,amount)=> {
+    
+        setGastos( (prevGasto) => {return [...prevGasto ,{name,amount}]} );
+        // console.log(resolvers.Query.getUsuarios(models.usuario));  
+         
+
+    }
+    
+    // const deleteG =  gasto =>{
+        
+    //     deleteGastoDB(gasto);
+    
+    // }
+
 
     
 
@@ -94,9 +105,11 @@ export const GastosPage = () => {
 
                     />))}
                 </Col>
-                <Col  className = "TagsManagerForm">
+                <Col  className = "mt-5 TagsManagerForm">
                     <GastosForm 
                     key={1}
+                    
+
                     />
                 </Col>
                 </Row>
@@ -104,7 +117,5 @@ export const GastosPage = () => {
         </Container>
     )
 }
-
-
 
 export default GastosPage;

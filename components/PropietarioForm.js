@@ -136,12 +136,12 @@ export const PropietarioForm = ({AptopNum,edificioId}) => {
                                             // console.log('aptoID==>',aptoId);
                                             refetch().then(responseData=>{
                                                 let aptoId=hola.getApartamentoByEdifIdByAptoNum.id;
-                                            //     console.log(responseData);
-                                                // if (aptoId!==null && responseData.data.getUsuarioCedula!==null){
-                                            //         console.log('entrooo2')
-                                            //         // console.log(responseData.data.getUsuarioCedula.cedula);
-                                                    createUserApto({variables:{aptoId:aptoId,idUsuario:responseData.data.getUsuario.cedula}});
-                                                // }
+                                                // console.log(hola);
+                                                if (aptoId!==null && responseData.data.getUsuarioCedula!==null){
+                                                    console.log('entrooo2')
+                                                    console.log(responseData.data.getUsuarioCedula.cedula);
+                                                    createUserApto({variables:{aptoId:aptoId,idUsuario:responseData.data.getUsuarioCedula.cedula}});
+                                                }
                                             });
                                             
                                             })
