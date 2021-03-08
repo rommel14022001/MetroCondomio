@@ -12,22 +12,22 @@ import NewEdifPage from './newedifpage';
 import LoginPage from './LoginPage';
 import RecibosPage from './RecibosPage';
 import AdminUserAptosPage from './admin/adminUserAptosPage';
-
+import FacturasPage from './facturasPage'
 export default function Home() {
-   const client = new ApolloClient({
-    uri: 'http://localhost:4000/graphql',
-    cache: new InMemoryCache()
-  });
   return (
-    <ApolloProvider client={client}>
       <div>
 {/* <RecibosPage props={"28013672"}/> */}
-      <AdminUserAptosPage/>        
+      {/* <AdminUserAptosPage/>         */}
        {/* <GastosPage /> */}
         
+       {/* <ApolloProvider> */}
+
+           <FacturasPage /*props={launches}*//>
+       {/* </ApolloProvider> */}
+           
+         
      </div>
-    </ApolloProvider>
-  )
+ )
 
 }
 

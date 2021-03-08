@@ -4,19 +4,21 @@ module.exports= (sequelize,DataTypes)=>{
         id:{
             type:DataTypes.INTEGER,
             autoIncrement:true,
+            allowNull:false,
             primaryKey:true
         },
-        metodo:{
-            type:DataTypes.STRING,
-            allowNull:false
+        metodoId:{
+            type: DataTypes.INTEGER,
+            allowNull:false,
+            primaryKey:true
         },
         monto:{
-            type:DataTypes.INTEGER,
+            type:DataTypes.FLOAT,
             allowNull:false
         },
         active:{
             type:DataTypes.BOOLEAN,
-            allowNull:false
+            allowNull:false,
         }
     },{});
     return Pago

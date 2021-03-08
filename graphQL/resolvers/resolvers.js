@@ -63,8 +63,43 @@ const resolvers={
         },
         async getUserApartamentoApartamento(root, arg, {models}){
             return await models.UserApartamento.findOne({ where:{idApartamento:arg.idApartamento}})
-        }
+        },
         
+
+        async getFacturas(root, arg, {models}){
+            return await models.factura.findAll()
+        },
+        async getActiveFacturas(root, arg, {models}){
+            return await models.factura.findAll({ where:{active: true}})
+        },
+        async getFacturaId(root, arg, {models}){
+            return await models.factura.findByPk(arg.id)
+        },
+        async getApartamentoFactura(root, arg, {models}){
+            return await models.apartamento_factura.findAll()
+        },
+        async getPagos(root, arg, {models}){
+            return await models.pago.findAll()
+        },
+        async getActivePagos(root, arg, {models}){
+            return await models.pago.findAll({ where:{active: true}})
+        },
+        async getPagoId(root, arg, {models}){
+            return await models.pago.findByPk(arg.id)
+        },
+        async getMetodosPago(root, arg, {models}){
+            return await models.metodoPago.findAll()
+        },
+        async getActiveMetodosPago(root, arg, {models}){
+            return await models.metodoPago.findAll({ where:{active: true}})
+        },
+        async getMetodoPagoId(root, arg, {models}){
+            return await models.metodoPago.findByPk(arg.id)
+        },
+        async getPagoFactura(root, arg, {models}){
+            return await models.PagoFactura.findAll()
+        },
+
 
     },
     Mutation:{
@@ -87,6 +122,37 @@ const resolvers={
         },
         async createGasto(root,{nombre,monto,active},{models}){
             return await models.gasto.create({nombre,monto,active})
+        },
+        async createFactura(root,{fechaDeCreacion,fechaDeVencimiento,monto,active},{models}){
+            return await models.factura.create({fechaDeCreacion,fechaDeVencimiento,monto,active})
+        },
+        async createApartamentoFactura(root,{facturaId,apartamentoId},{models}){
+            return await models.apartamento_factura.create({facturaId,apartamentoId})
+        },
+        async createPago(root,{metodoId,monto,active},{models}){
+            return await models.pago.create({metodoId, monto, active})
+        },
+        async createMetodoPago(root,{metodo,active},{models}){
+            return await models.metodoPago.create({metodo,active})
+        },
+        async createPagoFactura(root,{pagoId,facturaId},{models}){
+            return await models.pago_factura.create({pagoId,facturaId})
+        },
+        async updateMetodoPago(root,{id,metodo,active},{models}){
+            await models.metodoPago.create({metodo,active},{where: {
+                id: id
+            }
+        }).then(()=>{
+            return true
+        })
+        },
+        async updateFactura(root,{id,fechaDeCreacion,fechaDeVencimiento,monto,active},{models}){
+            await models.factura.create({fechaDeCreacion,fechaDeVencimiento,monto,active},{where: {
+                id: id
+            }
+        }).then(()=>{
+            return true
+        })
         },
         async updateGasto(root,{id,nombre,monto,active},{models}){
             await models.gasto.update({nombre,monto,active}, {where: {

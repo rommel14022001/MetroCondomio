@@ -21,13 +21,12 @@ export const NewCondoPage = () => {
         }
     }
     `;
-    const GET_ACTIVE_EDIFICIOS = gql`
-    query getActiveEdificios {
-        getActiveEdificios {
+    const GET_GASTOS = gql`
+    query getGastos {
+        getGastos {
         id
         nombre
-        pisos
-        aptosPPiso
+        monto
         active
         }
     }
@@ -51,19 +50,23 @@ export const NewCondoPage = () => {
 
     const [recoverEdificio] = useMutation(RECOVER_EDIFICIO);
 
+    const { loading: loadingGasto, error: errorGasto, data: dataGasto } = useQuery(GET_GASTOS, {
+        pollInterval: 500
+    })
+
     const { loading, error, data } = useQuery(GET_EDIFICIOS, {
         pollInterval: 500
     })
-    
-    if (loading) console.log('Loading...');
+  if (loading) console.log('Loading...');
     if (error) console.log(`Error! ${error.message}`);
 
     const arrayEdificios = []
-    // useEffect(() => {
-    //     console.log(data)
-        
-    // }, [recoverEdificio,deleteEdificio,data])
-    const [edificios, setEdificios] = useState([]);
+
+    useEffect(() => {
+        console.log(data)
+        console.log("la data de gasto es: ", dataGasto);
+    }, [recoverEdificio,deleteEdificio,data, dataGasto])
+   const [edificios, setEdificios] = useState([]);
     const createEdificio =  (name,floors,aptosPFloor)=> {
     
         setEdificios( (prevEdificio) => {return [...prevEdificio ,{name,floors, aptos, aptosPFloor}]} );
