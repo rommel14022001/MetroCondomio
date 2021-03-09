@@ -80,6 +80,8 @@ const typeDefs=gql`
         getUsuarioCedula(cedula:Int!):Usuario
         getUsuarios:[Usuario]
         getUsuario(id:Int!):Usuario
+        getUsuarioAllPropietarios:[Usuario]
+        getUsuarioAllAdmin:[Usuario]
         getGastos:[Gasto]
         getActiveGastos:[Gasto]
         getGasto(id:Int!):Gasto

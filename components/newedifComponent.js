@@ -8,7 +8,7 @@ import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery, useMutation } 
 
 
 
-export const NewCondoPage = () => {
+export const NewEdifComponent = () => {
     
     const GET_EDIFICIOS = gql`
     query getEdificios {
@@ -114,4 +114,4 @@ export const NewCondoPage = () => {
         </Container>
     )
 }
-export default NewCondoPage;
+export default NewEdifComponent;

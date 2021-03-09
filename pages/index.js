@@ -6,13 +6,7 @@ import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css"
 import "@babel/polyfill";
 
-import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery} from '@apollo/client'
-import GastosPage from './gastospage';
-import NewEdifPage from './newedifpage';
 import LoginPage from './LoginPage';
-import RecibosPage from './RecibosPage';
-import AdminUserAptosPage from './admin/adminUserAptosPage';
-import FacturasPage from './facturasPage'
 export default function Home() {
   return (
       <div>
@@ -22,7 +16,7 @@ export default function Home() {
         
        {/* <ApolloProvider> */}
 
-           <FacturasPage /*props={launches}*//>
+           <LoginPage /*props={launches}*//>
        {/* </ApolloProvider> */}
            
          

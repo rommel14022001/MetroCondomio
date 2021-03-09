@@ -12,6 +12,12 @@ const resolvers={
         async getUsuarioCedula(root,args,{models}){
             return await models.usuario.findOne({ where: { cedula: args.cedula} });
         },
+        async getUsuarioAllPropietarios(root,args,{models}){
+            return await models.usuario.findAll({ where: { rol: 1} });
+        },
+        async getUsuarioAllAdmin(root,args,{models}){
+            return await models.usuario.findAll({ where: { rol: 0} });
+        },
         async getGastos(root,args,{models}){
             return await models.gasto.findAll()
         },

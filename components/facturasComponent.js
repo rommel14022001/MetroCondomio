@@ -6,7 +6,7 @@ import {Container, Button,Col,Row} from 'react-bootstrap';
 import resolvers from '../graphQL/resolvers/resolvers';
 import { ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery, useMutation} from '@apollo/client';
 
-export const FacturasPage = () => {
+export const FacturasComponent = () => {
     const GET_FACTURAS = gql`
     query getFacturas {
         getFacturas {
@@ -86,4 +86,4 @@ export const FacturasPage = () => {
 
 
 
-export default FacturasPage;
+export default FacturasComponent;
