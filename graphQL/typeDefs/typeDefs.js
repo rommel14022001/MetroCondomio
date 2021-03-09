@@ -159,12 +159,9 @@ const typeDefs=gql`
         createEdificio(nombre:String!,pisos:Int!,aptosPPiso: Int!,residenciaId: Int!,active:Boolean!):Edificio
         createApartamento(edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
 
-        createUserApartamento(aptoId:Int!,idUsuario:Int!):UserApartamento
         createFactura(fechaDeCreacion: String!, fechaDeVencimiento: String!, monto: Float!, active: Boolean!): Factura
         createApartamentoFactura(facturaId: Int!, apartamentoId: Int!): Apartamento_Factura
-        createPago(metodoId: Int!, monto:Int!, active: Boolean!): Pago
         createMetodoPago(metodo: String!, active: Boolean!): MetodoPago
-<<<<<<< HEAD
         createPagoFactura(pagoId: Int!, facturaId: Int!,idPagoFactura: Int!,montoPago: Int!): Pago_Factura
         createUserApartamento(aptoId:Int!,idUsuario:Int!,tipoUsuarioId: Int!, active: Boolean!):Usuario_Apartamento
         createEdificioGasto(edificioId: Int!, gastoId: Int!, active: Boolean!): Edificio_Gasto
@@ -179,20 +176,6 @@ const typeDefs=gql`
         updateUsuario(cedula:Int!,nombre:String!,apellido:String!,rol:Int!,correo: String!,aptosIds:String!,numeroTelf:String!,fechaDeNacimiento:String!,active:Boolean!):Usuario
         updateResidencia(id:Int!,calle:String!,ciudad:String!,municipio:String!,estado:String!,nombre:String!,active:Boolean!):Residencia
         updateUserApartamento(aptoId:Int!,idUsuario:Int!,active: Boolean!):UserApartamento
-=======
-        createPagoFactura(pagoId: Int!, facturaId: Int!): PagoFactura
-   
-
-        updateUsuario(id:Int!,nombre:String!,apellido:String!,rol: Int!,correo: String!,aptosIds:String!,numeroTelf:Int!,fechaDeNacimiento:String!,cedula:Int!,active:Boolean!):Usuario
-        updateResidencia(id:Int!,calle:String!,ciudad:String!,municipio:String!,estado:String!,nombre:String!,torres: Int!,active:Boolean!):Residencia
-        updateEdificio(id: Int!,nombre:String!,pisos:Int!,aptosPPiso: Int!,active:Boolean!):Edificio
-        updateApartamento(id: Int!,edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
-        updateUserApartamento(IdUsuario:Int!,idApartamento:Int!):UserApartamento
-
-        updateFactura(id: Int!, fechaDeCreacion: String!, fechaDeVencimiento: String!, monto: Float!, active: Boolean!):Factura
-        updateGasto(id: Int!, nombre:String!,monto:Int!,active:Boolean!):Gasto
-        updateMetodoPago(id: Int!, metodo: String!, active: Boolean!): MetodoPago
->>>>>>> 2d9fd22d1adf12f3aef10c7b62a7414a4c6863d1
     }
      `;
 
