@@ -1,20 +1,20 @@
 module.exports= (sequelize,DataTypes)=>{
     //Esto te permite crear esa capa de ORM
-    const UserApartamento=sequelize.define('UserApartamento',{
-        aptoId:{
+    const Tipos_De_Usuario=sequelize.define('Tipos_De_Usuario',{
+        id:{
             type:DataTypes.INTEGER,
-            allowNull:false
+            autoIncrement:true,
+            primaryKey:true
         },
-        idUsuario:{
-            type:DataTypes.INTEGER,
+        tipo:{
+            type:DataTypes.STRING,
             allowNull:false
         },
         active:{
             type:DataTypes.BOOLEAN,
-            allowNull: false
+            allowNull:false
         }
-               
     },{});
-    return UserApartamento
+    return Tipos_De_Usuario
 
 }

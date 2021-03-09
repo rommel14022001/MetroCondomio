@@ -62,15 +62,16 @@ const typeDefs=gql`
         metodo: String!,
         active: Boolean!
     }
-    type PagoFactura{
+    type Pago_Factura{
         pagoId: Int!,
         facturaId: Int!,
         idPagoFactura: Int!,
         montoPago: Int!
     }
-    type UserApartamento{
+    type Usuario_Apartamento{
         aptoId:Int!,
         idUsuario:Int!,
+        tipoUsuarioId: Int!,
         active: Boolean!
     }
     type Edificio_Gasto{
@@ -92,10 +93,14 @@ const typeDefs=gql`
         tipo:String!,
         active:Boolean!
     }
+    type Tipos_De_Usuario{
+        id:Int!,
+        tipo:String!,
+        active:Boolean!
+    }
     type Query{
         getUsuarioCedula(cedula:Int!):Usuario
         getUsuarios:[Usuario]
-        getUsuario(id:Int!):Usuario
         getGastos:[Gasto]
         getActiveGastos:[Gasto]
         getGasto(id:Int!):Gasto
@@ -120,13 +125,14 @@ const typeDefs=gql`
         getMetodosPago: [MetodoPago]
         getActiveMetodosPago : [MetodoPago]
         getMetodoPagoId (id: Int!) : MetodoPago
-        getPagoFactura: [PagoFactura]
-        getUserApartamentos:[UserApartamento]
-        getUserApartamentoUsuario(idUsuario:Int!):[UserApartamento]
-        getUserApartamentoApartamento(idApartamento:Int!):UserApartamento
+        getPagoFactura: [Pago_Factura]
+        getUserApartamentos:[Usuario_Apartamento]
+        getUserApartamentoUsuario(idUsuario:Int!):[Usuario_Apartamento]
+        getUserApartamentoApartamento(idApartamento:Int!):Usuario_Apartamento
         getApartamentoByEdifIdByAptoNum(aptoNum:Int!,edificioId:Int!):Apartamento
         getEdificiosGastos:[Edificio_Gasto]
         getTiposDeGasto: [Tipo_De_Gasto]
+        getTiposDeUsuarios: [Tipos_De_Usuarios]
         
 }
     type Mutation{
@@ -139,10 +145,11 @@ const typeDefs=gql`
         createApartamentoFactura(facturaId: Int!, apartamentoId: Int!, monto: Float!): Apartamento_Factura
         createPago(metodoId: Int!, monto:Int!, active: Boolean!): Pago
         createMetodoPago(metodo: String!, active: Boolean!): MetodoPago
-        createPagoFactura(pagoId: Int!, facturaId: Int!,idPagoFactura: Int!,montoPago: Int!): PagoFactura
-        createUserApartamento(aptoId:Int!,idUsuario:Int!,active: Boolean!):UserApartamento
+        createPagoFactura(pagoId: Int!, facturaId: Int!,idPagoFactura: Int!,montoPago: Int!): Pago_Factura
+        createUserApartamento(aptoId:Int!,idUsuario:Int!,tipoUsuarioId: Int!, active: Boolean!):Usuario_Apartamento
         createEdificioGasto(edificioId: Int!, gastoId: Int!, active: Boolean!): Edificio_Gasto
         createTipoDeGasto(tipo: String!, active: Boolean!): Tipo_De_Gasto
+        createTiposDeUsuarios(tipo: String!, active: Boolean!): Tipos_De_Usuarios
 
         updateFactura(id: Int!, fechaDeCreacion: String!, fechaDeVencimiento: String!, active: Boolean!):Factura
         updateGasto(id: Int!, nombre:String!,monto:Int!,id_tipo_de_gasto: String!, fechaDeBorrado: String!,fechaDeCreacion: String!,active:Boolean!):Gasto
