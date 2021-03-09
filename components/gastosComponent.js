@@ -113,11 +113,11 @@ export const GastosComponent = () => {
                     />))}
                 </Col>
                 <Col  className = "mt-5 TagsManagerForm">
-                    <GastosForm 
+                    {/* <GastosForm 
                     key={1}
                     
 
-                    />
+                    /> */}
                 </Col>
                 </Row>
             </div>
