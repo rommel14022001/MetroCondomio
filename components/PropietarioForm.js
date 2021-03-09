@@ -65,6 +65,20 @@ export const PropietarioForm = ({AptopNum,edificioId}) => {
         }
     }
     `;
+    const UPDATE_APARTAMENTO = gql`
+    mutation updateApartamento($id:Int!,$edificioId: Int!, $piso: Int!, $aptoNum: Int!,$cedula: Int, $inquilinoNombre: String, $alicuota: Float!, $active:Boolean!) {
+        updateApartamento(id:$id,edificioId: $edificioId, piso: $piso, aptoNum: $aptoNum,cedula: $cedula, inquilinoNombre: $inquilinoNombre, alicuota: $alicuota, active:$active){
+            id,
+            edificioId ,
+            piso,
+            aptoNum,
+            cedula,
+            inquilinoNombre,
+            alicuota,
+            active
+        }
+    }
+    `;
     
     console.log(AptopNum,edificioId)
     
@@ -99,6 +113,7 @@ export const PropietarioForm = ({AptopNum,edificioId}) => {
 
     const [createPropietario] = useMutation(ADD_PROPIETARIO);
     const [createUserApto] = useMutation(ADD_USER_PROPIETARIO);
+    const [updateApartamento] = useMutation(UPDATE_APARTAMENTO);
 
     
 
@@ -137,11 +152,19 @@ export const PropietarioForm = ({AptopNum,edificioId}) => {
                                             refetch().then(responseData=>{
                                                 
                                                 let aptoId=hola.getApartamentoByEdifIdByAptoNum.id;
+                                                let edificioId=hola.getApartamentoByEdifIdByAptoNum.edificioId;
+                                                let piso=hola.getApartamentoByEdifIdByAptoNum.piso;
+                                                let aptoNum=hola.getApartamentoByEdifIdByAptoNum.aptoNum;
+                                                let cedula=hola.getApartamentoByEdifIdByAptoNum.cedula;
+                                                let inquilinoNombre=hola.getApartamentoByEdifIdByAptoNum.inquilinoNombre;
+                                                let alicuota=hola.getApartamentoByEdifIdByAptoNum.alicuota;
+                                                let active=1;
                                                 // console.log(hola);
                                                 if (aptoId!==null && responseData.data.getUsuarioCedula!==null){
                                                     console.log('entrooo2')
                                                     console.log(responseData.data.getUsuarioCedula.cedula);
                                                     createUserApto({variables:{aptoId:aptoId,idUsuario:responseData.data.getUsuarioCedula.cedula}});
+                                                    updateApartamento({variables:{id:aptoId,edificioId:edificioId,piso:piso,aptoNum:aptoNum,cedula:cedula,inquilinoNombre:inquilinoNombre,alicuota:alicuota,active:true}})
                                                 }
                                           });
                                             
