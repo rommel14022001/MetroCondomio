@@ -18,7 +18,8 @@ const typeDefs=gql`
         nombre:String!,
         pisos:Int!,
         aptosPPiso: Int!,
-        active:Boolean!
+        active:Boolean!,
+        Residencia:Residencia
     }
     type Apartamento{
         id:Int!,
@@ -28,7 +29,8 @@ const typeDefs=gql`
         cedula: Int,
         inquilinoNombre: String,
         alicuota: Float!,
-        active:Boolean!
+        active:Boolean!,
+        Edificio:Edificio
     }
     type Gasto{
         id:Int!,
@@ -67,6 +69,7 @@ const typeDefs=gql`
         metodoId: Int!,
         monto: Float!
         active: Boolean!
+        MetodoPago:MetodoPago
     }
     type MetodoPago{
         id: Int!,
