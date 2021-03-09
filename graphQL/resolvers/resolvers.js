@@ -28,7 +28,7 @@ const resolvers={
             return await models.gasto.findByPk(args.id)
         },
         async getApartamentos(root, arg, {models}){
-            return await models.apartamento.findAll()
+            return await models.apartamento.findAll({where:{id:args.condoId,active:true,},include:models.edificio})
         },
         async getActiveApartamentos(root, arg, {models}){
             return await models.apartamento.findAll({ where:{active: true}})

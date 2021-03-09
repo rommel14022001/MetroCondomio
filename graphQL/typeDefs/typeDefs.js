@@ -11,6 +11,7 @@ const typeDefs=gql`
         numeroTelf:String!,
         fechaDeNacimiento:String!,
         active:Boolean!
+        Tipos_De_Usuario:Tipo_De_Usuario
     }
     type Edificio{
         id:Int!,
@@ -19,6 +20,7 @@ const typeDefs=gql`
         aptosPPiso: Int!,
         residenciaId: Int!
         active:Boolean!
+        Residencia:Residencia
     }
     type Apartamento{
         id:Int!,
@@ -28,7 +30,8 @@ const typeDefs=gql`
         cedula: Int,
         inquilinoNombre: String,
         alicuota: Float!,
-        active:Boolean!
+        active:Boolean!,
+        Edificio:Edificio
     }
     type Gasto{
         id:Int!,
@@ -38,6 +41,7 @@ const typeDefs=gql`
         fechaDeBorrado: String!,
         fechaDeCreacion: String!,
         active:Boolean!
+        Tipo_De_Gasto:Tipo_De_Gasto
     }
     type UserApartamento{
         aptoId:Int!,
@@ -70,6 +74,7 @@ const typeDefs=gql`
         metodoId: Int!,
         monto: Float!
         active: Boolean!
+        MetodoPago:MetodoPago
     }
     type MetodoPago{
         id: Int!,
@@ -177,6 +182,10 @@ const typeDefs=gql`
         updateResidencia(id:Int!,calle:String!,ciudad:String!,municipio:String!,estado:String!,nombre:String!,active:Boolean!):Residencia
         updateUserApartamento(aptoId:Int!,idUsuario:Int!,active: Boolean!):UserApartamento
     }
+
+
      `;
+
+
 
 module.exports=typeDefs;
