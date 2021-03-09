@@ -8,7 +8,7 @@ import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery, useMutation } 
 import AptoIdFunction from './AptoIdFunction';
 
 
-export const PropietarioForm = ({AptopNum,edificioId}) => {
+export const AdminForm = ({AptopNum,edificioId}) => {
     const ADD_PROPIETARIO = gql`
     mutation createUsuario($nombre:String!,$apellido:String!,$rol:Int!,$correo: String!,$aptosIds:String!,$numeroTelf:String!,$fechaDeNacimiento:String!,$cedula:Int!,$active:Boolean!) {
          createUsuario(nombre: $nombre, apellido:$apellido,rol:$rol, correo:$correo,aptosIds:$aptosIds,numeroTelf:$numeroTelf,fechaDeNacimiento:$fechaDeNacimiento, cedula:$cedula,active: $active) {
@@ -25,82 +25,20 @@ export const PropietarioForm = ({AptopNum,edificioId}) => {
          }
     }
     `;
-    const ADD_USER_PROPIETARIO = gql`
-    mutation createUserApartamento($aptoId:Int!,$idUsuario:Int!,) {
-         createUserApartamento(aptoId:$aptoId,idUsuario:$idUsuario) {
-           aptoId
-           idUsuario
-         }
-    }
-    `;
-
-    const GET_USUARIOS_CEDULA = gql`
-    query getUsuarioCedula($cedula:Int!) {
-        getUsuarioCedula(cedula:$cedula){
-          id
-          nombre
-          apellido
-          rol
-          correo
-          aptosIds
-          numeroTelf
-          fechaDeNacimiento
-          cedula
-          active
-        }
-    }
-    `;
-    
-    const GET_APARTAMENTO_BY_EDIFICIOID_BY_APTONUM = gql`
-    query getApartamentoByEdifIdByAptoNum($aptoNum:Int!,$edificioId:Int!) {
-        getApartamentoByEdifIdByAptoNum(aptoNum:$aptoNum,edificioId:$edificioId){
-            id,
-            edificioId ,
-            piso,
-            aptoNum,
-            cedula,
-            inquilinoNombre,
-            alicuota,
-            active
-        }
-    }
-    `;
-    
-    console.log(AptopNum,edificioId)
     
     
-    const  {  data:hola } = useQuery(GET_APARTAMENTO_BY_EDIFICIOID_BY_APTONUM, {
-        variables:{aptoNum:parseInt(AptopNum), edificioId:parseInt(edificioId)},
-        pollInterval: 500
-    });
-    
-    
-
-    
-    
-    
-
-    const [propietario, handlePropietario]=useState({name:'', apellido:'',rol:1,correo:'',aptosIds:'',numeroTelf:'',fechaDeNacimiento:'',cedula:0});
+    const [propietario, handlePropietario]=useState({name:'', apellido:'',rol:0,correo:'',aptosIds:'',numeroTelf:'',fechaDeNacimiento:'',cedula:0});
     const {name,apellido,rol,numeroTelf,fechaDeNacimiento,cedula,aptosIds,correo}=propietario;
     // const [error, updateError]=useState(false);
     const [aptoId, handleAptoId]=useState(0);
     
-    const { loading:loadingQueryUserCI, error:errorQueryUserCI, data,refetch } = useQuery(GET_USUARIOS_CEDULA, {
-        variables: { cedula:parseInt(cedula)},
-        pollInterval: 500,
-    });
+    
     
 
-    useEffect(() => {
-        console.log("HOLA==>",hola)
-        console.log("DATA==>", data )
-        console.log(cedula)
-    }, [hola,data])
+    
 
     const [createPropietario] = useMutation(ADD_PROPIETARIO);
-    const [createUserApto] = useMutation(ADD_USER_PROPIETARIO);
 
-    
 
     const updateState= evento =>{handlePropietario({...propietario,[evento.target.name] : evento.target.value})}
 
@@ -120,38 +58,19 @@ export const PropietarioForm = ({AptopNum,edificioId}) => {
         createPropietario({ variables: { 
                                             nombre: name, 
                                             apellido:apellido,
-                                            rol:1,
+                                            rol:0,
                                             correo:correo,
                                             aptosIds:aptosIds,
                                             numeroTelf:numeroTelf,
                                             fechaDeNacimiento:fechaDeNacimiento,
                                             cedula: parseInt(cedula), 
-                                            active: true } }).then(response=>{
-
-                                                // createGasto({ variables: { nombre: name, monto: parseInt(amount), active: true } });
-                                            // console.log(aptosByEdificioidByAptoNum)
-                                            console.log(hola)
-                                            
-                                            // console.log('entrooo1')
-                                            // console.log('aptoID==>',aptoId);
-                                            refetch().then(responseData=>{
-                                                
-                                                let aptoId=hola.getApartamentoByEdifIdByAptoNum.id;
-                                                // console.log(hola);
-                                                if (aptoId!==null && responseData.data.getUsuarioCedula!==null){
-                                                    console.log('entrooo2')
-                                                    console.log(responseData.data.getUsuarioCedula.cedula);
-                                                    createUserApto({variables:{aptoId:aptoId,idUsuario:responseData.data.getUsuarioCedula.cedula}});
-                                                }
-                                          });
-                                            
-                                            })
-                                        }
+                                            active: true } })
+        handlePropietario({name:'', apellido:'',rol:1,correo:'',aptosIds:'',numeroTelf:'',fechaDeNacimiento:'',cedula:0}); 
+    }
                                         
 
         
         
-        // handlePropietario({name:'', apellido:'',rol:1,correo:'',aptosIds:'',numeroTelf:'',fechaDeNacimiento:'',cedula:0}); 
     
 
     return(
@@ -212,4 +131,4 @@ export const PropietarioForm = ({AptopNum,edificioId}) => {
 }
 
 
-export default PropietarioForm;
+export default AdminForm;

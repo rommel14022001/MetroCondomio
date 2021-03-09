@@ -2,7 +2,7 @@
 
 import Sequelize from 'sequelize';
 
-const sequelize = new Sequelize("bd_metrocondominio","root",'root', {
+const sequelize = new Sequelize("bd_metrocondominio","root",'Realgud1402.', {
     host:"localhost",
     dialect:"mysql",
 });
@@ -14,12 +14,11 @@ const models={
     factura:sequelize.import('./factura.js'),
     apartamento:sequelize.import('./apartamento.js'),
     edificio:sequelize.import('./edificio.js'),
-    factura:sequelize.import('./factura.js'),
+    UserApartamento:sequelize.import('./userApartamento'),
     apartamento_factura:sequelize.import('./apartamento_factura.js'),
     pago:sequelize.import('./pago.js'),
     metodoPago:sequelize.import('./metodoPago.js'),
     pagoFactura: sequelize.import('./pago_factura.js'),
-    UserApartamento:sequelize.import('./userApartamento')
 }
 
 models.sequelize=sequelize;

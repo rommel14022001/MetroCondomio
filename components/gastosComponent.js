@@ -5,7 +5,11 @@ import styles from "../styles/pages/gastospage.module.css";
 import {Container, Button,Col,Row} from 'react-bootstrap';
 import resolvers from '../graphQL/resolvers/resolvers';
 import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery, useMutation } from '@apollo/client'
-export const GastosPage = () => {
+
+
+
+
+export const GastosComponent = () => {
     const GET_GASTOS = gql`
     query getGastos {
         getGastos {
@@ -118,4 +122,6 @@ export const GastosPage = () => {
     )
 }
 
-export default GastosPage;
+
+
+export default GastosComponent;
