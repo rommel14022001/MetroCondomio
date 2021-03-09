@@ -157,7 +157,7 @@ const resolvers={
             return await models.pago_factura.create({pagoId,facturaId})
         },
         async updateMetodoPago(root,{id,metodo,active},{models}){
-            await models.metodoPago.create({metodo,active},{where: {
+            await models.metodoPago.update({metodo,active},{where: {
                 id: id
             }
         }).then(()=>{
@@ -165,7 +165,7 @@ const resolvers={
         })
         },
         async updateFactura(root,{id,fechaDeCreacion,fechaDeVencimiento,active},{models}){
-            await models.factura.create({fechaDeCreacion,fechaDeVencimiento,active},{where: {
+            await models.factura.update({fechaDeCreacion,fechaDeVencimiento,active},{where: {
                 id: id
             }
         }).then(()=>{

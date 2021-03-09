@@ -13,23 +13,22 @@ export const PaymentMethodComponent = () => {
     query getMetodosPago {
         getMetodosPago {
         id
-        nombre
-        monto
+        metodo
         active
         }
     }
     `;
     
     const DELETE_METODO_PAGO = gql`
-    mutation updateMetodoPago($id: Int!, $nombre: String!, $monto: Int!, $active:Boolean!) {
-         updateGasto(id: $id, nombre: $nombre, monto: $monto,active: $active) {
+    mutation updateMetodoPago($id: Int!, $metodo: String!, $active:Boolean!) {
+         updateMetodoPago(id: $id, metodo: $metodo,active: $active) {
            id
          }
     }
     `;
     const RECOVER_METODO_PAGO = gql`
-    mutation updateMetodoPago($id: Int!, $nombre: String!, $monto: Int!, $active:Boolean!) {
-         updateGasto(id: $id, nombre: $nombre, monto: $monto,active: $active) {
+    mutation updateMetodoPago($id: Int!, $metodo: String!,  $active:Boolean!) {
+         updateMetodoPago(id: $id, metodo: $metodo, active: $active) {
            id
          }
     }
@@ -55,9 +54,9 @@ export const PaymentMethodComponent = () => {
     
     // console.log('las props son: ',props)
 
-    const createMetodoPago =  (name,amount)=> {
+    const createMetodoPago =  (metodo)=> {
     
-        setMetodosPagos( (prevMetodoPago) => {return [...prevMetodoPago ,{name,amount}]} );
+        setMetodosPagos( (prevMetodoPago) => {return [...prevMetodoPago ,{metodo}]} );
         // console.log(resolvers.Query.getUsuarios(models.usuario));  
          
 
@@ -93,8 +92,8 @@ export const PaymentMethodComponent = () => {
                     <PaymentMethodDetails 
                     key= { metodoPago.id } 
                     metodoPago={metodoPago} 
-                    deleteGasto={deleteMetodoPago}
-                    recoverGasto={recoverMetodoPago}
+                    deleteMetodoPago={deleteMetodoPago}
+                    recoverMetodoPago={recoverMetodoPago}
 
                     />))}
                 </Col>
