@@ -181,6 +181,14 @@ export const Sidebar = () => {
                                         </div>
                                         <div className="ml-3 mt-4">
 
+                                            <Link href={{
+                                                pathname: '/admin/[admin]/adminPaymentMethodPage',
+                                                query: { admin: usuario },
+                                            }}>Administrar Metodos de Pago</Link>
+                                        
+                                        </div>
+                                        <div className="ml-3 mt-4">
+
                                             <Link href="/">Cerrar sesion</Link>
                                         
                                         </div>
