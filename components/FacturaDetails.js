@@ -6,7 +6,7 @@ import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery, useMutation } 
 
 export const FacturaDetails  = ({factura}) => {
 
-    const {fechaDeCreacion,fechaDeVencimiento,monto,id, active} = factura;
+    const {fechaDeCreacion,fechaDeVencimiento,id, active} = factura;
 
     
     return(
@@ -15,7 +15,6 @@ export const FacturaDetails  = ({factura}) => {
             <Col> {id} </Col>
             <Col> {fechaDeCreacion} </Col>
             <Col> {fechaDeVencimiento} </Col>
-            <Col>${monto}</Col>
         </Col>
     )
 }

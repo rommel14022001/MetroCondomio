@@ -14,10 +14,6 @@ module.exports= (sequelize,DataTypes)=>{
             type:DataTypes.DATEONLY,
             allowNull:false
         },
-        monto:{
-            type:DataTypes.FLOAT,
-            allowNull:false
-        },
         active:{
             type:DataTypes.BOOLEAN,
             allowNull:false

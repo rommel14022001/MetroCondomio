@@ -13,18 +13,16 @@ export const FacturasPage = () => {
         id
         fechaDeCreacion
         fechaDeVencimiento
-        monto
         active
         }
     }
     `;
     const ADD_FACTURAS = gql`
-    mutation createFactura($fechaDeCreacion:String!,$fechaDeVencimiento:String!,$monto:Float!,$active: Boolean!) {
-        createUsuario(fechaDeVencimiento: $fechaDeVencimiento, fechaDeVencimiento:$fechaDeVencimiento,monto:$monto, active:$active) {
+    mutation createFactura($fechaDeCreacion:String!,$fechaDeVencimiento:String!,$active: Boolean!) {
+        createUsuario(fechaDeVencimiento: $fechaDeVencimiento, fechaDeVencimiento:$fechaDeVencimiento, active:$active) {
         id
         fechaDeCreacion
         fechaDeVencimiento
-        monto
         active
         }
     }
@@ -75,7 +73,7 @@ export const FacturasPage = () => {
                 </Col>
                 <Col  className = "TagsManagerForm">
                     <FacturaForm 
-                    key={1}
+                    
                     />
                 </Col>
                 </Row>

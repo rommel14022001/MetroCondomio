@@ -29,7 +29,10 @@ const resolvers={
             return await models.apartamento.findAll()
         },
         async getActiveApartamentos(root, arg, {models}){
-            return await models.apartamento.findAll({ where:{active: true}})
+            return await models.apartamento.findAll({ where:{active: false}})
+        },
+        async getActiveGastos(root, arg, {models}){
+            return await models.gasto.findAll({ where:{active: true}})
         },
         async getNotActiveApartamentos(root, arg, {models}){
             return await models.apartamento.findAll({ where:{active: false}})
@@ -120,11 +123,11 @@ const resolvers={
         async createGasto(root,{nombre,monto,active},{models}){
             return await models.gasto.create({nombre,monto,active})
         },
-        async createFactura(root,{fechaDeCreacion,fechaDeVencimiento,monto,active},{models}){
-            return await models.factura.create({fechaDeCreacion,fechaDeVencimiento,monto,active})
+        async createFactura(root,{fechaDeCreacion,fechaDeVencimiento,active},{models}){
+            return await models.factura.create({fechaDeCreacion,fechaDeVencimiento,active})
         },
-        async createApartamentoFactura(root,{facturaId,apartamentoId},{models}){
-            return await models.apartamento_factura.create({facturaId,apartamentoId})
+        async createApartamentoFactura(root,{facturaId,apartamentoId, monto},{models}){
+            return await models.apartamento_factura.create({facturaId,apartamentoId, monto})
         },
         async createPago(root,{metodoId,monto,active},{models}){
             return await models.pago.create({metodoId, monto, active})
@@ -143,8 +146,8 @@ const resolvers={
             return true
         })
         },
-        async updateFactura(root,{id,fechaDeCreacion,fechaDeVencimiento,monto,active},{models}){
-            await models.factura.create({fechaDeCreacion,fechaDeVencimiento,monto,active},{where: {
+        async updateFactura(root,{id,fechaDeCreacion,fechaDeVencimiento,active},{models}){
+            await models.factura.create({fechaDeCreacion,fechaDeVencimiento,active},{where: {
                 id: id
             }
         }).then(()=>{

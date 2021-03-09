@@ -40,12 +40,13 @@ const typeDefs=gql`
         id:Int!,
         fechaDeCreacion:String!,
         fechaDeVencimiento:String!,
-        monto:Float!,
         active:Boolean!
     }
     type Apartamento_Factura{
+        id:Int!,
         facturaId:Int!,
-        apartamentoId:Int!
+        apartamentoId:Int!,
+        monto: Float!
     }
     type Pago{
         id: Int!,
@@ -117,11 +118,11 @@ const typeDefs=gql`
         createResidencia(calle:String!,ciudad:String!,municipio:String!,estado:String!,nombre:String!,torres:Int!,active:Boolean!):Residencia
         createEdificio(nombre:String!,pisos:Int!,aptosPPiso: Int!,active:Boolean!):Edificio
         createApartamento(edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
-        createFactura(fechaDeCreacion: String!, fechaDeVencimiento: String!, monto: Float!, active: Boolean!): Factura
-        createApartamentoFactura(facturaId: Int!, apartamentoId: Int!): Apartamento_Factura
+        createFactura(fechaDeCreacion: String!, fechaDeVencimiento: String!, active: Boolean!): Factura
+        createApartamentoFactura(facturaId: Int!, apartamentoId: Int!, monto: Float!): Apartamento_Factura
         createPago(metodoId: Int!, monto:Int!, active: Boolean!): Pago
         createMetodoPago(metodo: String!, active: Boolean!): MetodoPago
-        updateFactura(id: Int!, fechaDeCreacion: String!, fechaDeVencimiento: String!, monto: Float!, active: Boolean!):Factura
+        updateFactura(id: Int!, fechaDeCreacion: String!, fechaDeVencimiento: String!, active: Boolean!):Factura
         updateGasto(id: Int!, nombre:String!,monto:Int!,active:Boolean!):Gasto
         updateEdificio(id: Int!,nombre:String!,pisos:Int!,aptosPPiso: Int!,active:Boolean!):Edificio
         updateApartamento(id: Int!,edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
