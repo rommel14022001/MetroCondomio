@@ -2,7 +2,7 @@ const {gql} = require('apollo-server-express');
    
 const typeDefs=gql`
     type Usuario{
-        id:Int!,
+        cedula:Int!,
         nombre:String!,
         apellido:String!,
         rol: Int!,
@@ -10,15 +10,16 @@ const typeDefs=gql`
         aptosIds:String!,
         numeroTelf:String!,
         fechaDeNacimiento:String!,
-        cedula:Int!,
         active:Boolean!
+        Tipos_De_Usuario:Tipo_De_Usuario
     }
     type Edificio{
         id:Int!,
         nombre:String!,
         pisos:Int!,
         aptosPPiso: Int!,
-        active:Boolean!,
+        residenciaId: Int!
+        active:Boolean!
         Residencia:Residencia
     }
     type Apartamento{
@@ -36,7 +37,11 @@ const typeDefs=gql`
         id:Int!,
         nombre:String!,
         monto:Int!,
+        id_tipo_de_gasto: Int!,
+        fechaDeBorrado: String!,
+        fechaDeCreacion: String!,
         active:Boolean!
+        Tipo_De_Gasto:Tipo_De_Gasto
     }
     type UserApartamento{
         aptoId:Int!,
@@ -76,9 +81,41 @@ const typeDefs=gql`
         metodo: String!,
         active: Boolean!
     }
-    type PagoFactura{
+    type Pago_Factura{
         pagoId: Int!,
-        facturaId: Int!
+        facturaId: Int!,
+        idPagoFactura: Int!,
+        montoPago: Int!
+    }
+    type Usuario_Apartamento{
+        aptoId:Int!,
+        idUsuario:Int!,
+        tipoUsuarioId: Int!,
+        active: Boolean!
+    }
+    type Edificio_Gasto{
+        edificioId:Int!,
+        gastoId:Int!,
+        active: Boolean!
+    }
+    type Residencia{
+        id:Int!,
+        calle:String!,
+        ciudad:String!,
+        municipio:String!,
+        estado:String!,
+        nombre:String!,
+        active:Boolean!
+    }
+    type Tipo_De_Gasto{
+        id:Int!,
+        tipo:String!,
+        active:Boolean!
+    }
+    type Tipos_De_Usuario{
+        id:Int!,
+        tipo:String!,
+        active:Boolean!
     }
     type Query{
         getUsuarioCedula(cedula:Int!):Usuario
@@ -110,38 +147,45 @@ const typeDefs=gql`
         getMetodosPago: [MetodoPago]
         getActiveMetodosPago : [MetodoPago]
         getMetodoPagoId (id: Int!) : MetodoPago
-        getPagoFactura: [PagoFactura]
-        getUserApartamentos:[UserApartamento]
-        getUserApartamentoUsuario(idUsuario:Int!):[UserApartamento]
-        getUserApartamentoApartamento(idApartamento:Int!):UserApartamento
+        getPagoFactura: [Pago_Factura]
+        getUserApartamentos:[Usuario_Apartamento]
+        getUserApartamentoUsuario(idUsuario:Int!):[Usuario_Apartamento]
+        getUserApartamentoApartamento(idApartamento:Int!):Usuario_Apartamento
         getApartamentoByEdifIdByAptoNum(aptoNum:Int!,edificioId:Int!):Apartamento
+        getEdificiosGastos:[Edificio_Gasto]
+        getTiposDeGasto: [Tipo_De_Gasto]
+        getTiposDeUsuarios: [Tipos_De_Usuarios]
         
 }
     type Mutation{
-        createUsuario(nombre:String!,apellido:String!,rol:Int!,correo: String!,aptosIds:String!,numeroTelf:String!,fechaDeNacimiento:String!,cedula:Int!,active:Boolean!):Usuario
-        createGasto(nombre:String!,monto:Int!,active:Boolean!):Gasto
-        createResidencia(calle:String!,ciudad:String!,municipio:String!,estado:String!,nombre:String!,torres:Int!,active:Boolean!):Residencia
-        createEdificio(nombre:String!,pisos:Int!,aptosPPiso: Int!,active:Boolean!):Edificio
+        createUsuario(cedula:Int!,nombre:String!,apellido:String!,rol:Int!,correo: String!,aptosIds:String!,numeroTelf:String!,fechaDeNacimiento:String!,active:Boolean!):Usuario
+        createGasto(nombre:String!,monto:Int!,id_tipo_de_gasto: String!, fechaDeBorrado: String!,fechaDeCreacion: String!,active:Boolean!):Gasto
+        createResidencia(calle:String!,ciudad:String!,municipio:String!,estado:String!,nombre:String!,active:Boolean!):Residencia
+        createEdificio(nombre:String!,pisos:Int!,aptosPPiso: Int!,residenciaId: Int!,active:Boolean!):Edificio
         createApartamento(edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
 
-        createUserApartamento(aptoId:Int!,idUsuario:Int!):UserApartamento
         createFactura(fechaDeCreacion: String!, fechaDeVencimiento: String!, monto: Float!, active: Boolean!): Factura
         createApartamentoFactura(facturaId: Int!, apartamentoId: Int!): Apartamento_Factura
-        createPago(metodoId: Int!, monto:Int!, active: Boolean!): Pago
         createMetodoPago(metodo: String!, active: Boolean!): MetodoPago
-        createPagoFactura(pagoId: Int!, facturaId: Int!): PagoFactura
-   
+        createPagoFactura(pagoId: Int!, facturaId: Int!,idPagoFactura: Int!,montoPago: Int!): Pago_Factura
+        createUserApartamento(aptoId:Int!,idUsuario:Int!,tipoUsuarioId: Int!, active: Boolean!):Usuario_Apartamento
+        createEdificioGasto(edificioId: Int!, gastoId: Int!, active: Boolean!): Edificio_Gasto
+        createTipoDeGasto(tipo: String!, active: Boolean!): Tipo_De_Gasto
+        createTiposDeUsuarios(tipo: String!, active: Boolean!): Tipos_De_Usuarios
 
-        updateUsuario(id:Int!,nombre:String!,apellido:String!,rol: Int!,correo: String!,aptosIds:String!,numeroTelf:Int!,fechaDeNacimiento:String!,cedula:Int!,active:Boolean!):Usuario
-        updateResidencia(id:Int!,calle:String!,ciudad:String!,municipio:String!,estado:String!,nombre:String!,torres: Int!,active:Boolean!):Residencia
-        updateEdificio(id: Int!,nombre:String!,pisos:Int!,aptosPPiso: Int!,active:Boolean!):Edificio
+        updateFactura(id: Int!, fechaDeCreacion: String!, fechaDeVencimiento: String!, active: Boolean!):Factura
+        updateGasto(id: Int!, nombre:String!,monto:Int!,id_tipo_de_gasto: String!, fechaDeBorrado: String!,fechaDeCreacion: String!,active:Boolean!):Gasto
+        updateEdificio(id: Int!,nombre:String!,pisos:Int!,aptosPPiso: Int!,residenciaId: Int!,active:Boolean!):Edificio
         updateApartamento(id: Int!,edificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
-        updateUserApartamento(IdUsuario:Int!,idApartamento:Int!):UserApartamento
-
-        updateFactura(id: Int!, fechaDeCreacion: String!, fechaDeVencimiento: String!, monto: Float!, active: Boolean!):Factura
-        updateGasto(id: Int!, nombre:String!,monto:Int!,active:Boolean!):Gasto
         updateMetodoPago(id: Int!, metodo: String!, active: Boolean!): MetodoPago
+        updateUsuario(cedula:Int!,nombre:String!,apellido:String!,rol:Int!,correo: String!,aptosIds:String!,numeroTelf:String!,fechaDeNacimiento:String!,active:Boolean!):Usuario
+        updateResidencia(id:Int!,calle:String!,ciudad:String!,municipio:String!,estado:String!,nombre:String!,active:Boolean!):Residencia
+        updateUserApartamento(aptoId:Int!,idUsuario:Int!,active: Boolean!):UserApartamento
     }
+
+
      `;
+
+
 
 module.exports=typeDefs;

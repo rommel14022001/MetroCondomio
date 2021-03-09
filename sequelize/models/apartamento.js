@@ -19,11 +19,11 @@ module.exports= (sequelize,DataTypes)=>{
             type:DataTypes.INTEGER,
             allowNull: false
         },
-        cedula:{
+        cedula:{ /*SE TIENE QUE IR */
             type:DataTypes.INTEGER,
             allowNull: true
         },
-        inquilinoNombre:{
+        inquilinoNombre:{ /*SE TIENE QUE IR */
             type:DataTypes.STRING,
             allowNull: true
         },

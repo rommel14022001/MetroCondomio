@@ -1,9 +1,9 @@
 module.exports= (sequelize,DataTypes)=>{
     //Esto te permite crear esa capa de ORM
     const Usuario=sequelize.define('Usuario',{
-        id:{
+        cedula:{
             type:DataTypes.INTEGER,
-            autoIncrement:true,
+            allowNull:false,
             primaryKey:true
         },
         nombre:{
@@ -31,11 +31,7 @@ module.exports= (sequelize,DataTypes)=>{
             allowNull:false
         },
         fechaDeNacimiento:{
-            type:DataTypes.STRING,
-            allowNull:false
-        },
-        cedula:{
-            type:DataTypes.INTEGER,
+            type:DataTypes.DATEONLY,
             allowNull:false
         },
         active:{

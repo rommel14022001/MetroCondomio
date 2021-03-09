@@ -5,10 +5,6 @@ const resolvers={
         async getUsuarios(root,args,{models}){
             return await models.usuario.findAll()
         },
-
-        async getUsuario(root,args,{models}){
-            return await models.usuario.findByPk(args.id)
-        },
         async getUsuarioCedula(root,args,{models}){
             return await models.usuario.findOne({ where: { cedula: args.cedula} });
         },
@@ -32,10 +28,10 @@ const resolvers={
             return await models.gasto.findByPk(args.id)
         },
         async getApartamentos(root, arg, {models}){
-            return await models.apartamento.findAll()
+            return await models.apartamento.findAll({where:{id:args.condoId,active:true,},include:models.edificio})
         },
         async getActiveApartamentos(root, arg, {models}){
-            return await models.apartamento.findAll({ where:{active: false}})
+            return await models.apartamento.findAll({ where:{active: true}})
         },
         async getActiveGastos(root, arg, {models}){
             return await models.gasto.findAll({ where:{active: true}})
@@ -117,29 +113,38 @@ const resolvers={
         },
         async getUserApartamentoApartamento(root, arg, {models}){
             return await models.UserApartamento.findOne({ where:{idApartamento:arg.idApartamento}})
+        },
+        async getEdificiosGastos(root, arg, {models}){
+            return await models.edificio_gasto.findAll()
+        },
+        async getTiposDeGasto(root, arg, {models}){
+            return await models.tipo_de_gasto.findAll()
+        },
+        async getTiposDeUsuarios(root, arg, {models}){
+            return await models.tipos_de_usuarios.findAll()
         }
 
     },
     Mutation:{
-        async createUsuario(root,{nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,cedula,active},{models}){
+        async createUsuario(root,{cedula,nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,active},{models}){
             return await models.usuario.create({nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,cedula,active})
         },
-       async updateUsuario(root,{id,nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,cedula,active},{models}){
-            await models.usuario.update({nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,cedula,active}, {where: {
-                id: id
+       async updateUsuario(root,{cedula,nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,active},{models}){
+            await models.usuario.update({cedula,nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,active}, {where: {
+                cedula: cedula
             }
         }).then(()=>{
             return true
         })
         },
-       async createEdificio(root,{nombre,pisos,aptosPPiso,active},{models}){
-            return await models.edificio.create({nombre,pisos,aptosPPiso,active})
+       async createEdificio(root,{nombre,pisos,aptosPPiso,residenciaId,active},{models}){
+            return await models.edificio.create({nombre,pisos,aptosPPiso,residenciaId,active})
         },
         async createApartamento(root,{edificioId,piso,aptoNum,cedula,inquilinoNombre,alicuota,active},{models}){
             return await models.apartamento.create({edificioId,piso,aptoNum,cedula,inquilinoNombre,alicuota,active})
         },
-        async createGasto(root,{nombre,monto,active},{models}){
-            return await models.gasto.create({nombre,monto,active})
+        async createGasto(root,{nombre,monto,id_tipo_de_gasto, fechaDeBorrado,fechaDeCreacion,active},{models}){
+            return await models.gasto.create({nombre,monto,id_tipo_de_gasto, fechaDeBorrado,fechaDeCreacion,active})
         },
         async createFactura(root,{fechaDeCreacion,fechaDeVencimiento,active},{models}){
             return await models.factura.create({fechaDeCreacion,fechaDeVencimiento,active})
@@ -153,8 +158,17 @@ const resolvers={
         async createMetodoPago(root,{metodo,active},{models}){
             return await models.metodoPago.create({metodo,active})
         },
-        async createPagoFactura(root,{pagoId,facturaId},{models}){
-            return await models.pago_factura.create({pagoId,facturaId})
+        async createPagoFactura(root,{pagoId, facturaId,idPagoFactura,montoPago},{models}){
+            return await models.pago_factura.create({pagoId, facturaId,idPagoFactura,montoPago})
+        },
+        async createEdificioGasto(root,{edificioId,gastoId,active},{models}){
+            return await models.edificio_gasto.create({edificioId,gastoId,active})
+        },
+        async createTipoDeGasto(root,{tipo,active},{models}){
+            return await models.tipo_de_gasto.create({tipo,active})
+        },
+        async createTiposDeUsuarios(root,{tipo,active},{models}){
+            return await models.tipos_de_usuarios.create({tipo,active})
         },
         async updateMetodoPago(root,{id,metodo,active},{models}){
             await models.metodoPago.update({metodo,active},{where: {
@@ -172,25 +186,25 @@ const resolvers={
             return true
         })
         },
-        async updateGasto(root,{id,nombre,monto,active},{models}){
-            await models.gasto.update({nombre,monto,active}, {where: {
+        async updateGasto(root,{id,nombre,monto,id_tipo_de_gasto, fechaDeBorrado,fechaDeCreacion,active},{models}){
+            await models.gasto.update({nombre,monto,id_tipo_de_gasto, fechaDeBorrado,fechaDeCreacion,active}, {where: {
                 id: id
             }
         }).then(()=>{
             return true
         })
     },
-        async createResidencia(root,{calle,ciudad,municipio,estado,nombre,torres,active},{models}){
-            return await models.residencia.create({calle,ciudad,municipio,estado,nombre,torres,active})
+        async createResidencia(root,{calle,ciudad,municipio,estado,nombre,active},{models}){
+            return await models.residencia.create({calle,ciudad,municipio,estado,nombre,active})
         },
-        async createUserApartamento(root,{aptoId,idUsuario},{models}){
-            return await models.UserApartamento.create({aptoId,idUsuario})
+        async createUserApartamento(root,{aptoId,idUsuario,tipoUsuarioId,active},{models}){
+            return await models.UserApartamento.create({aptoId,idUsuario,tipoUsuarioId,active})
         },
-        async updateResidencia(root,{id,calle,ciudad,municipio,estado,nombre,torres,active},{models}){
-            await models.residencia.update({calle,ciudad,municipio,estado,nombre,torres,active}, {where: {
+        async updateResidencia(root,{id,calle,ciudad,municipio,estado,nombre,active},{models}){
+            await models.residencia.update({calle,ciudad,municipio,estado,nombre,active}, {where: {
         }})},
         async updateEdificio(root,{id,nombre,pisos,aptosPPiso,active},{models}){
-            await models.edificio.update({nombre,pisos,aptosPPiso}, {where: {
+            await models.edificio.update({nombre,pisos,aptosPPiso,residenciaId,active}, {where: {
                 id: id
             }
         }).then(()=>{
@@ -205,8 +219,8 @@ const resolvers={
             return true
         })
       },
-      async updateUserApartamento(root,{idUsuario,idApartamento},{models}){
-            await models.UserApartamento.update({idUsuario,idApartamento}, {where: {
+      async updateUserApartamento(root,{idUsuario,idApartamento,tipoUsuarioId, active},{models}){
+            await models.UserApartamento.update({idUsuario,idApartamento,tipoUsuarioId, active}, {where: {
                idUsuario: idUsuario
             }
         }).then(()=>{
