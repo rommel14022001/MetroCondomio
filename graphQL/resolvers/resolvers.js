@@ -99,6 +99,12 @@ const resolvers={
         },
         async getUserApartamentoApartamento(root, arg, {models}){
             return await models.UserApartamento.findOne({ where:{idApartamento:arg.idApartamento}})
+        },
+        async getEdificiosGastos(root, arg, {models}){
+            return await models.edificio_gasto.findAll()
+        },
+        async getTiposDeGasto(root, arg, {models}){
+            return await models.tipo_de_gasto.findAll()
         }
 
     },
@@ -137,6 +143,12 @@ const resolvers={
         },
         async createPagoFactura(root,{pagoId,facturaId},{models}){
             return await models.pago_factura.create({pagoId,facturaId})
+        },
+        async createEdificioGasto(root,{edificioId,gastoId,active},{models}){
+            return await models.edificio_gasto.create({edificioId,gastoId,active})
+        },
+        async createTipoDeGasto(root,{tipo,active},{models}){
+            return await models.tipo_de_gasto.create({tipo,active})
         },
         async updateMetodoPago(root,{id,metodo,active},{models}){
             await models.metodoPago.create({metodo,active},{where: {

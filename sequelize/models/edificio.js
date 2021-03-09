@@ -18,6 +18,11 @@ module.exports= (sequelize,DataTypes)=>{
             type:DataTypes.INTEGER,
             allowNull: false
         },
+        residenciaId:{
+            type: DataTypes.Integer,
+            allowNull: false,
+            primaryKey:true
+        },
         active:{
             type:DataTypes.BOOLEAN,
             allowNull:false

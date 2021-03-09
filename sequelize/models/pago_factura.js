@@ -11,9 +11,15 @@ module.exports= (sequelize,DataTypes)=>{
             autoIncrement:false,
             primaryKey:true
         },
-        // descuenta:{
-            
-        // }
+        idPagoFactura:{
+            type:DataTypes.INTEGER,
+            autoIncrement:false,
+            primaryKey:true
+        },
+        montoPago:{
+            type: DataTypes.INTEGER,
+            allowNull: false
+        }
 
     },{});
     return Pago_Factura
