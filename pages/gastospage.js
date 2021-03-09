@@ -12,6 +12,9 @@ export const GastosPage = () => {
         id
         nombre
         monto
+        id_tipo_de_gasto,
+        fechaDeBorrado,
+        fechaDeCreacion,
         active
         }
     }
@@ -27,15 +30,15 @@ export const GastosPage = () => {
     }
     `;
     const DELETE_GASTO = gql`
-    mutation updateGasto($id: Int!, $nombre: String!, $monto: Int!, $active:Boolean!) {
-         updateGasto(id: $id, nombre: $nombre, monto: $monto,active: $active) {
+    mutation updateGasto($id: Int!, $nombre: String!, $monto: Int!, $id_tipo_de_gasto: Int!, $fechaDeBorrado: String!, fechaDeCreacion: String!,$active:Boolean!) {
+         updateGasto(id: $id, nombre: $nombre, monto: $monto,id_tipo_de_gasto: $id_tipo_de_gasto, fechaDeBorrado: $fechaDeBorrado, fechaDeCreacion: $fechaDeCreacion, active: $active) {
            id
          }
     }
     `;
     const RECOVER_GASTO = gql`
-    mutation updateGasto($id: Int!, $nombre: String!, $monto: Int!, $active:Boolean!) {
-         updateGasto(id: $id, nombre: $nombre, monto: $monto,active: $active) {
+    mutation updateGasto($id: Int!, $nombre: String!, $monto: Int!, $id_tipo_de_gasto: Int!, $fechaDeBorrado: String!, fechaDeCreacion: String!,$active:Boolean!) {
+         updateGasto(id: $id, nombre: $nombre, monto: $monto,id_tipo_de_gasto: $id_tipo_de_gasto, fechaDeBorrado: $fechaDeBorrado, fechaDeCreacion: $fechaDeCreacion, active: $active) {
            id
          }
     }
