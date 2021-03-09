@@ -10,7 +10,7 @@ const UserRecibo = () => {
       
       <>
         <Container  >
-          <h1>DONE</h1>  
+          <h1>Recibos</h1>  
         </Container>
 
         

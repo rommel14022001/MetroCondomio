@@ -31,7 +31,7 @@ export const GastosDetails  = ({gasto, deleteGasto, recoverGasto}) => {
             <Col>${monto}</Col>
             {active===false? <button className="btn-outline btn-danger" onClick = {() => recoverGasto({variables: { id:id, nombre: nombre, monto: parseInt(monto), active: true }})}>Recover</button>: <button className="btn-outline btn-danger" onClick = {() => deleteGasto({ variables: { id:id, nombre: nombre, monto: parseInt(monto), active: false } })}>Eliminar</button>}
             
-            <button className="btn-outline btn-danger" onClick = {() => deleteGasto()}>Editar</button>
+            {/* <button className="btn-outline btn-danger" onClick = {() => deleteGasto()}>Editar</button> */}
         </Col>
     )
 }

@@ -150,7 +150,7 @@ export const PropietarioForm = ({AptopNum,edificioId}) => {
                                             // console.log('entrooo1')
                                             // console.log('aptoID==>',aptoId);
                                             refetch().then(responseData=>{
-                                                
+                                                console.log(hola.getApartamentoByEdifIdByAptoNum)
                                                 let aptoId=hola.getApartamentoByEdifIdByAptoNum.id;
                                                 let edificioId=hola.getApartamentoByEdifIdByAptoNum.edificioId;
                                                 let piso=hola.getApartamentoByEdifIdByAptoNum.piso;
