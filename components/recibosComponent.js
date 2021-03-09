@@ -7,7 +7,7 @@ import { gql, useMutation,useQuery } from '@apollo/client';
 
 
 
-export const RecibosPage = (props) => {
+export const RecibosComponent = (props) => {
     const GET_GASTOS = gql`
     query getGastos {
         getGastos {
@@ -102,4 +102,4 @@ export const RecibosPage = (props) => {
 
 
 
-export default RecibosPage;
+export default RecibosComponent;

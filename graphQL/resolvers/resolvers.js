@@ -8,6 +8,12 @@ const resolvers={
         async getUsuarioCedula(root,args,{models}){
             return await models.usuario.findOne({ where: { cedula: args.cedula} });
         },
+        async getUsuarioAllPropietarios(root,args,{models}){
+            return await models.usuario.findAll({ where: { rol: 1} });
+        },
+        async getUsuarioAllAdmin(root,args,{models}){
+            return await models.usuario.findAll({ where: { rol: 0} });
+        },
         async getGastos(root,args,{models}){
             return await models.gasto.findAll()
         },
@@ -54,7 +60,19 @@ const resolvers={
         async getEdificioName(root, arg, {models}){
             return await models.edificio.findOne({ where:{nombre:arg.nombre}})
         },
-        async getFacturas(root, arg, {models}){
+// =======
+        async getUserApartamentos(root, arg, {models}){
+            return await models.UserApartamento.findAll()
+        },
+        async getUserApartamentoUsuario(root, arg, {models}){
+            return await models.UserApartamento.findAll({ where:{idUsuario:arg.idUsuario}})
+        },
+        async getUserApartamentoApartamento(root, arg, {models}){
+            return await models.UserApartamento.findOne({ where:{idApartamento:arg.idApartamento}})
+        },
+        
+
+       async getFacturas(root, arg, {models}){
             return await models.factura.findAll()
         },
         async getActiveFacturas(root, arg, {models}){
@@ -87,7 +105,7 @@ const resolvers={
         async getPagoFactura(root, arg, {models}){
             return await models.PagoFactura.findAll()
         },
-        async getUserApartamentos(root, arg, {models}){
+      async getUserApartamentos(root, arg, {models}){
             return await models.UserApartamento.findAll()
         },
         async getUserApartamentoUsuario(root, arg, {models}){
@@ -153,7 +171,7 @@ const resolvers={
             return await models.tipos_de_usuarios.create({tipo,active})
         },
         async updateMetodoPago(root,{id,metodo,active},{models}){
-            await models.metodoPago.create({metodo,active},{where: {
+            await models.metodoPago.update({metodo,active},{where: {
                 id: id
             }
         }).then(()=>{
@@ -161,7 +179,7 @@ const resolvers={
         })
         },
         async updateFactura(root,{id,fechaDeCreacion,fechaDeVencimiento,active},{models}){
-            await models.factura.create({fechaDeCreacion,fechaDeVencimiento,active},{where: {
+            await models.factura.update({fechaDeCreacion,fechaDeVencimiento,active},{where: {
                 id: id
             }
         }).then(()=>{

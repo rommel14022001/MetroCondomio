@@ -5,8 +5,7 @@ import styles from "../styles/pages/loginpage.module.css";
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import { Redirect, Route, Switch } from 'react-router-dom'
-import GastosPage from '../pages/gastospage';
-import RegisterPage from '../pages/RegisterPage';
+
 import Router, { withRouter } from 'next/router'
 
 
@@ -15,7 +14,6 @@ import Router, { withRouter } from 'next/router'
 function StatusDescription() {
     return {query:{UserRecibos:'28013672'}};
 }
-
 
 
 const LoginForm = () => {
@@ -37,10 +35,18 @@ let LinkProps = {
     // console.log(username)
     
     if (data.getUsuarioCedula!==null){
-      router.push({
-          pathname: '/usuarios/[UserRecibos]',
-          query: { UserRecibos: username },
-        });
+      if(data.getUsuarioCedula.rol===1){
+
+        router.push({
+            pathname: '/usuario/[usuario]/UserRecibos',
+            query: { usuario: username },
+          });
+      }else{
+           router.push({
+            pathname: '/admin/[admin]/adminUserAptosPage',
+            query: { admin: username },
+          });
+      }
     }
 
   }
@@ -85,6 +91,8 @@ let LinkProps = {
     variables: { cedula:parseInt(username)},
     pollInterval: 500,
   });
+
+  
     
   return ( 
       

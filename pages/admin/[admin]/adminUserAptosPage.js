@@ -1,13 +1,13 @@
 
 import React, {useState, useEffect,Fragment} from 'react';
-import styles from "../../styles/pages/gastospage.module.css";
+import styles from "../../../styles/pages/gastospage.module.css";
 import {Container, Button,Col,Row,Dropdown,DropdownButton,InputGroup} from 'react-bootstrap';
 
 import {ApolloClient,InMemoryCache,gql, ApolloProvider, useQuery, useMutation } from '@apollo/client'
 
-import EdificioForm from '../../components/EdificioForm'
-import ActiveEdifList from '../../components/ActiveEdifList';
-import ActiveAptopsList from '../../components/ActiveAptosList';
+import EdificioForm from '../../../components/EdificioForm'
+import ActiveEdifList from '../../../components/ActiveEdifList';
+import ActiveAptopsList from '../../../components/ActiveAptosList';
 export const AdminUserAptosPage = () => {
     
     const client = new ApolloClient({
