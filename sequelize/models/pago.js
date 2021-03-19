@@ -7,10 +7,10 @@ module.exports= (sequelize,DataTypes)=>{
             allowNull:false,
             primaryKey:true
         },
-        metodoId:{
+        metodoPagoId:{
             type: DataTypes.INTEGER,
             allowNull:false,
-            primaryKey:true
+            
         },
         monto:{
             type:DataTypes.FLOAT,

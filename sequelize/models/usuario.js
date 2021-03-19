@@ -22,10 +22,7 @@ module.exports= (sequelize,DataTypes)=>{
             type:DataTypes.STRING,
             allowNull:false
         },
-        aptosIds:{
-            type:DataTypes.STRING,
-            allowNull:false
-        },
+        
         numeroTelf:{
             type:DataTypes.STRING,
             allowNull:false

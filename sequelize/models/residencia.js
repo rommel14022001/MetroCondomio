@@ -6,10 +6,7 @@ module.exports= (sequelize,DataTypes)=>{
             autoIncrement:true,
             primaryKey:true
         },
-        torres:{
-            type:DataTypes.INTEGER,
-            allowNull:false
-        },
+        
         calle:{
             type:DataTypes.STRING,
             allowNull:false

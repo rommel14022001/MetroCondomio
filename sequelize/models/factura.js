@@ -15,10 +15,7 @@ module.exports= (sequelize,DataTypes)=>{
             allowNull:false
         },
         
-        monto:{
-            type:DataTypes.FLOAT,
-            allowNull:false
-        },
+        
         active:{
             type:DataTypes.BOOLEAN,
             allowNull:false

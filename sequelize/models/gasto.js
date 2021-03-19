@@ -19,7 +19,10 @@ module.exports= (sequelize,DataTypes)=>{
             type:DataTypes.BOOLEAN,
             allowNull:false
         },
-
+        TipoGastoId:{
+            type:DataTypes.INTEGER,
+            allowNull:false
+        }
     
 
         

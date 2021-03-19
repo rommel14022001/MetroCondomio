@@ -6,10 +6,10 @@ module.exports= (sequelize,DataTypes)=>{
             autoIncrement:true,
             primaryKey:true
         },
-        edificioId:{
+        EdificioId:{
             type:DataTypes.INTEGER,
             allowNull:false,
-            primaryKey:true
+            
         },
         piso:{
             type:DataTypes.INTEGER,
@@ -19,14 +19,7 @@ module.exports= (sequelize,DataTypes)=>{
             type:DataTypes.INTEGER,
             allowNull: false
         },
-        cedula:{
-            type:DataTypes.INTEGER,
-            allowNull: true
-        },
-        inquilinoNombre:{
-            type:DataTypes.STRING,
-            allowNull: true
-        },
+        
         alicuota:{ /*es el porcentaje pero en float*/ 
             type:DataTypes.FLOAT,
             allowNull: false

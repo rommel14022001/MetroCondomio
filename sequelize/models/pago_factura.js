@@ -1,19 +1,22 @@
 module.exports= (sequelize,DataTypes)=>{
     //Esto te permite crear esa capa de ORM
     const Pago_Factura=sequelize.define('Pago_Factura',{
-        pagoId:{
+        PagoId:{
             type:DataTypes.INTEGER,
             autoIncrement:false,
-            primaryKey:true
         },
-        facturaId:{
+        FacturaId:{
             type:DataTypes.INTEGER,
             autoIncrement:false,
-            primaryKey:true
         },
-        // descuenta:{
-            
-        // }
+        ApartamentoId:{
+            type:DataTypes.INTEGER,
+            autoIncrement:false,
+        },
+        montoPago:{
+            type: DataTypes.FLOAT,
+            allowNull: false
+        }
 
     },{});
     return Pago_Factura
