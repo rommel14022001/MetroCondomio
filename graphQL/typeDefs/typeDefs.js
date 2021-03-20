@@ -148,6 +148,7 @@ const typeDefs=gql`
         getEdificio (id:Int!):Edificio
         getEdificioName (nombre:String!):Edificio
         getFacturas: [Factura]
+        getFacturasCedula: [Apartamento_Factura]
         getActiveFacturas: [Factura]
         getFacturaId (id: Int!):Factura
         getApartamentoFactura : [Apartamento_Factura]
@@ -173,11 +174,11 @@ const typeDefs=gql`
         createPagoFactura(PagoId: Int!, FacturaId: Int!,ApartamentoId: Int!,montoPago: Float!): Pago_Factura
         createFacturaGasto(FacturaId: Int!, GastoId: Int!): Factura_Gasto
         createApartamentoFactura(FacturaId: Int!, ApartamentoId: Int!, monto: Float!):Apartamento_Factura
-        createUsuario(nombre:String!,apellido:String!,rol:Int!,correo: String!,aptosIds:String!,numeroTelf:String!,fechaDeNacimiento:String!,cedula:Int!,active:Boolean!):Usuario
+        createUsuario(nombre:String!,apellido:String!,rol:Int!,correo: String!,numeroTelf:String!,fechaDeNacimiento:String!,cedula:Int!,active:Boolean!):Usuario
         createGasto(nombre:String!,monto:Int!,active:Boolean!,TipoGastoId:Int!):Gasto
         createResidencia(calle:String!,ciudad:String!,municipio:String!,estado:String!,nombre:String!,active:Boolean!):Residencia
         createEdificio(nombre:String!,pisos:Int!,aptosPPiso: Int!,ResidenciaId: Int!,active:Boolean!):Edificio
-        createApartamento(EdificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento
+        createApartamento(EdificioId: Int!,piso:Int!,aptoNum: Int!,,alicuota: Float!,active:Boolean!):Apartamento
         createEdificioGasto(EdificioId: Int!, GastoId: Int!, active: Boolean!): Edificio_Gasto
         createUserApartamento(ApartamentoId:Int!,UsuarioId:Int!,TipoUsuarioId:Int!):UserApartamento
         createFactura(fechaDeCreacion: String!, fechaDeVencimiento: String!, active: Boolean!): Factura
@@ -189,7 +190,7 @@ const typeDefs=gql`
        
         createTipoDeGasto(tipo: String!, active: Boolean!,TipoGastoId:Int!): TipoGasto
 
-        updateUsuario(id:Int!,nombre:String!,apellido:String!,rol: Int!,correo: String!,aptosIds:String!,numeroTelf:Int!,fechaDeNacimiento:String!,cedula:Int!,active:Boolean!):Usuario
+        updateUsuario(id:Int!,nombre:String!,apellido:String!,rol: Int!,correo: String!,numeroTelf:Int!,fechaDeNacimiento:String!,cedula:Int!,active:Boolean!):Usuario
         updateResidencia(id:Int!,calle:String!,ciudad:String!,municipio:String!,estado:String!,nombre:String!,active:Boolean!):Residencia
         updateEdificio(id: Int!,nombre:String!,pisos:Int!,aptosPPiso: Int!,ResidenciaId:Int!,active:Boolean!):Edificio
         updateApartamento(id: Int!,EdificioId: Int!,piso:Int!,aptoNum: Int!,cedula: Int,inquilinoNombre: String,alicuota: Float!,active:Boolean!):Apartamento

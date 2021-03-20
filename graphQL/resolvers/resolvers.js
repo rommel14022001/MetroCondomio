@@ -35,7 +35,7 @@ const resolvers={
             return await models.apartamento.findAll()
         },
         async getActiveApartamentos(root, arg, {models}){
-            return await models.apartamento.findAll({ where:{active: false},include:models.edificio})
+            return await models.apartamento.findAll({ where:{active: true},include:models.edificio})
         },
         async getActiveGastos(root, arg, {models}){
             return await models.gasto.findAll({ where:{active: true}})
@@ -75,6 +75,23 @@ const resolvers={
 
        async getFacturas(root, arg, {models}){
             return await models.factura.findAll()
+        },
+        async getFacturasCedula(root, arg, {models}){
+            return await models.userApartamento.findAll({include: [
+                {
+                  model: models.apartamento,
+                  include: [
+                    {
+                      model: models.usuario,
+                      include: [
+                        {
+                          model: models.apartamento_factura
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]})
         },
         async getActiveFacturas(root, arg, {models}){
             return await models.factura.findAll({ where:{active: true}})
@@ -154,14 +171,14 @@ const resolvers={
             return await models.Apartamento_Gasto.create({ApartamentoId,GastoId,active})
         },
         
-        async createUsuario(root,{nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,cedula,active},{models}){
-            return await models.usuario.create({nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,cedula,active})
+        async createUsuario(root,{nombre,apellido,rol,correo,numeroTelf,fechaDeNacimiento,cedula,active},{models}){
+            return await models.usuario.create({nombre,apellido,rol,correo,numeroTelf,fechaDeNacimiento,cedula,active})
         },
         async createTipoDeGasto(root,{tipo,active},{models}){
             return await models.TipoGasto.create({tipo,active})
         },
-       async updateUsuario(root,{id,nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,cedula,active},{models}){
-            await models.usuario.update({nombre,apellido,rol,correo,aptosIds,numeroTelf,fechaDeNacimiento,cedula,active}, {where: {
+       async updateUsuario(root,{id,nombre,apellido,rol,correo,numeroTelf,fechaDeNacimiento,cedula,active},{models}){
+            await models.usuario.update({nombre,apellido,rol,correo,numeroTelf,fechaDeNacimiento,cedula,active}, {where: {
                 id: id
             }
         }).then(()=>{

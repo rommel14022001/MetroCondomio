@@ -2,9 +2,12 @@
 
 import Sequelize from 'sequelize';
 
-const sequelize = new Sequelize("bd_metrocondominio","root",'Realgud1402.', {
+const sequelize = new Sequelize("bd_metrocondominio","root",'Petyr88KV#', {
     host:"localhost",
     dialect:"mysql",
+    define:{
+        timestamps:false
+    }
 });
 
 const models={
